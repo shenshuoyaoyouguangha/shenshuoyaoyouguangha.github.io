@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>re做题记录 | 花开再美，怎如初见..?</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="花指令花指令总结_Captain_RB的博客-CSDN博客 [NSSRound#3 Team]jump_by_jump[NSSRound#3 Team]jump_by_jump | NSSCTF 为什么记录这个题目时因为他有花指令，是最简单的花指令 首先我们使用ida打开，我们可以看到他的主函数里调用了flag函数，但是不显示，我们切换视图发现是有花指令导致他无法编译  我们看到他的特征就想到了多">
+<meta property="og:type" content="article">
+<meta property="og:title" content="re做题记录">
+<meta property="og:url" content="https://wuming.github.io/2023/09/23/re%E5%81%9A%E9%A2%98%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:site_name" content="花开再美，怎如初见..?">
+<meta property="og:description" content="花指令花指令总结_Captain_RB的博客-CSDN博客 [NSSRound#3 Team]jump_by_jump[NSSRound#3 Team]jump_by_jump | NSSCTF 为什么记录这个题目时因为他有花指令，是最简单的花指令 首先我们使用ida打开，我们可以看到他的主函数里调用了flag函数，但是不显示，我们切换视图发现是有花指令导致他无法编译  我们看到他的特征就想到了多">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.l5jcce610eo.webp">
+<meta property="og:image" content="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.6qkaosh9hjk0.webp">
+<meta property="og:image" content="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.3x3dpjarkq60.webp">
+<meta property="og:image" content="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.44rklresz740.webp">
+<meta property="og:image" content="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.50qing3en4o0.webp">
+<meta property="og:image" content="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.4saybtma0gs0.webp">
+<meta property="og:image" content="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.3qj9ibdwap80.webp">
+<meta property="og:image" content="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.5lfec6bnq680.webp">
+<meta property="og:image" content="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.1cftb7q0szxc.webp">
+<meta property="article:published_time" content="2023-09-23T07:26:20.000Z">
+<meta property="article:modified_time" content="2023-09-23T14:14:55.384Z">
+<meta property="article:author" content="wuming">
+<meta property="article:tag" content="ctf">
+<meta property="article:tag" content="re">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.l5jcce610eo.webp">
+  
+    <link rel="alternative" href="/atom.xml" title="花开再美，怎如初见..?" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+
+  
+<script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+
+  
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+				<img lazy-src="https://cdn.jsdelivr.net/gh/shenshuoyaoyouguangha/blogimg@master/202308172157431.png" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+			<h1 class="header-author"><a href="/">wuming</a></h1>
+		</hgroup>
+
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">Home</a></li>
+				        
+							<li><a href="/archives">Archives</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="half-header-menu">
+						<a class="hide">Home</a>
+						<a>Tags</a>
+						<a>Links</a>
+						<a>About</a>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/shenshuoyaoyouguangha" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="mailto:2993669760@qq.com" title="mail">mail</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+						</div>
+						<!-- music -->
+						
+							<!-- <div style="position: absolute; bottom: 120px; left: auto; width: 85%;"> -->
+							<div style="position: absolute; left: auto; width: 85%;">
+								<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=220 height=86 src="//music.163.com/outchain/player?type=2&id=1397345903&auto=1&height=66"></iframe>
+							</div>
+						
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Pwn/" style="font-size: 10px;">Pwn</a> <a href="/tags/RE/" style="font-size: 10px;">RE</a> <a href="/tags/WEB/" style="font-size: 10px;">WEB</a> <a href="/tags/Web/" style="font-size: 10px;">Web</a> <a href="/tags/ctf/" style="font-size: 20px;">ctf</a> <a href="/tags/litctf/" style="font-size: 10px;">litctf</a> <a href="/tags/pwn/" style="font-size: 10px;">pwn</a> <a href="/tags/re/" style="font-size: 10px;">re</a> <a href="/tags/write-up/" style="font-size: 10px;">write up</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="/null">github</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">一名正在学习的ctfer...</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide"></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="https://cdn.jsdelivr.net/gh/shenshuoyaoyouguangha/blogimg@master/202308172157431.png" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author"></h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">Home</a></li>
+		        
+					<li><a href="/archives">Archives</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/shenshuoyaoyouguangha" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="mailto:2993669760@qq.com" title="mail">mail</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-re做题记录" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2023/09/23/re%E5%81%9A%E9%A2%98%E8%AE%B0%E5%BD%95/" class="article-date">
+  	<time datetime="2023-09-23T07:26:20.000Z" itemprop="datePublished">2023-09-23</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      re做题记录
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ctf/" rel="tag">ctf</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/re/" rel="tag">re</a></li></ul>
+	</div>
+
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="花指令"><a href="#花指令" class="headerlink" title="花指令"></a>花指令</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Captain_RB/article/details/123858864">花指令总结_Captain_RB的博客-CSDN博客</a></p>
+<h2 id="NSSRound-3-Team-jump-by-jump"><a href="#NSSRound-3-Team-jump-by-jump" class="headerlink" title="[NSSRound#3 Team]jump_by_jump"></a>[NSSRound#3 Team]jump_by_jump</h2><p>[<a target="_blank" rel="noopener" href="https://www.nssctf.cn/problem/2313">NSSRound#3 Team]jump_by_jump | NSSCTF</a></p>
+<p>为什么记录这个题目时因为他有花指令，是最简单的花指令</p>
+<p>首先我们使用ida打开，我们可以看到他的主函数里调用了flag函数，但是不显示，我们切换视图发现是有花指令导致他无法编译</p>
+<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.l5jcce610eo.webp"></p>
+<p>我们看到他的特征就想到了多字节指令，我们在41188C(call或者jmp等等跳转函数)处，摁D将其转换成数据，将E8 nop 掉</p>
+<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.6qkaosh9hjk0.webp"></p>
+<p>同时我们发现有很多变成了黄色的代码，我们一路对这些黄色的代码摁c将其转换成代码，最后我们可以选中全部的代码，摁d转换成数据，摁c转换成代码，最后摁p再编译成函数，就去掉了这类最简单的花指令，在函数内我们就发现了flag</p>
+<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.3x3dpjarkq60.webp"></p>
+<h2 id="HNCTF-2022-WEEK2-e-sy-flower"><a href="#HNCTF-2022-WEEK2-e-sy-flower" class="headerlink" title="[HNCTF 2022 WEEK2]e@sy_flower"></a>[HNCTF 2022 WEEK2]e@sy_flower</h2><p>第二个简单的去花题目</p>
+<p>找到主函数后发现有花的地方</p>
+<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.44rklresz740.webp"></p>
+<p>我们在这里找到了花指令的地方，我们直接右击选择patching-&gt;change byte</p>
+<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.50qing3en4o0.webp"></p>
+<p>我们把E9-&gt;90 ,把E9nop掉，然后在main上p一下编译函数就可以了</p>
+<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.4saybtma0gs0.webp"></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> __cdecl __noreturn <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">const</span> <span class="type">char</span> **argv, <span class="type">const</span> <span class="type">char</span> **envp)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">signed</span> <span class="type">int</span> v3; <span class="comment">// kr00_4</span></span><br><span class="line">  <span class="type">int</span> i; <span class="comment">// edx</span></span><br><span class="line">  <span class="type">char</span> v5; <span class="comment">// cl</span></span><br><span class="line">  <span class="type">unsigned</span> <span class="type">int</span> j; <span class="comment">// edx</span></span><br><span class="line">  <span class="type">int</span> v7; <span class="comment">// eax</span></span><br><span class="line">  <span class="type">char</span> v8; <span class="comment">// [esp+0h] [ebp-44h]</span></span><br><span class="line">  <span class="type">char</span> v9; <span class="comment">// [esp+0h] [ebp-44h]</span></span><br><span class="line">  <span class="type">char</span> Arglist[<span class="number">48</span>]; <span class="comment">// [esp+10h] [ebp-34h] BYREF</span></span><br><span class="line"></span><br><span class="line">  sub_401020(<span class="string">&quot;please input flag\n&quot;</span>, v8);</span><br><span class="line">  sub_401050(<span class="string">&quot;%s&quot;</span>, (<span class="type">char</span>)Arglist);</span><br><span class="line">  v3 = <span class="built_in">strlen</span>(Arglist);</span><br><span class="line">  <span class="keyword">for</span> ( i = <span class="number">0</span>; i &lt; v3 / <span class="number">2</span>; ++i )</span><br><span class="line">  &#123;</span><br><span class="line">    v5 = Arglist[<span class="number">2</span> * i];</span><br><span class="line">    Arglist[<span class="number">2</span> * i] = Arglist[<span class="number">2</span> * i + <span class="number">1</span>];</span><br><span class="line">    Arglist[<span class="number">2</span> * i + <span class="number">1</span>] = v5;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span> ( j = <span class="number">0</span>; j &lt; <span class="built_in">strlen</span>(Arglist); ++j )</span><br><span class="line">    Arglist[j] ^= <span class="number">0x30</span>u;</span><br><span class="line">  v7 = <span class="built_in">strcmp</span>(Arglist, <span class="string">&quot;c~scvdzKCEoDEZ[^roDICUMC&quot;</span>);</span><br><span class="line">  <span class="keyword">if</span> ( v7 )</span><br><span class="line">    v7 = v7 &lt; <span class="number">0</span> ? <span class="number">-1</span> : <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">if</span> ( !v7 )</span><br><span class="line">  &#123;</span><br><span class="line">    sub_401020(<span class="string">&quot;yes&quot;</span>, v9);</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  sub_401020(<span class="string">&quot;error&quot;</span>, v9);</span><br><span class="line">  <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们分析代码就可以知道，我们已知了加密后的代码，先异或回数据，然后根据前面的替换</p>
+<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.3qj9ibdwap80.webp"></p>
+<p>然后根据上面解出来的数据再写代码进行替换位置</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">a=<span class="string">&#x27;SNCSFTJ&#123;su_tujknB_tyse&#125;s&#x27;</span></span><br><span class="line">secret=<span class="built_in">list</span>(a)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="number">12</span>):</span><br><span class="line">  deme=secret[<span class="number">2</span>*i+<span class="number">1</span>]</span><br><span class="line">  secret[<span class="number">2</span>*i+<span class="number">1</span>] = secret[<span class="number">2</span>*i]</span><br><span class="line">  secret[<span class="number">2</span>*i]=deme</span><br><span class="line"></span><br><span class="line">result=<span class="string">&#x27;&#x27;</span>.join(secret)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(result,end=<span class="string">&#x27;&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># NSSCTF&#123;Just_junk_Bytess&#125;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="SWPUCTF-2021-新生赛-easyapp"><a href="#SWPUCTF-2021-新生赛-easyapp" class="headerlink" title="[SWPUCTF 2021 新生赛]easyapp"></a>[SWPUCTF 2021 新生赛]easyapp</h2><p>首先先把附件改成zip后缀进行解压，解压完成后直接使用jadx打开直接找到主函数进行分析</p>
+<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.5lfec6bnq680.webp"></p>
+<p>我们可以看到这段是主要的函数</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="comment">/* synthetic */</span> <span class="keyword">void</span> lambda$onCreate$<span class="number">0</span>$MainActivity(<span class="keyword">final</span> EditText editText, View v) &#123;</span><br><span class="line">        System.out.println(encoder.encode(editText.getText().toString()));</span><br><span class="line">        <span class="keyword">if</span> (encoder.encode(editText.getText().toString()).equals(<span class="string">&quot;棿棢棢棲棥棷棊棐棁棚棨棨棵棢棌&quot;</span>)) &#123;</span><br><span class="line">            Toast.makeText(<span class="built_in">this</span>, <span class="string">&quot;YES&quot;</span>, <span class="number">0</span>).show();</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            Toast.makeText(<span class="built_in">this</span>, <span class="string">&quot;NO&quot;</span>, <span class="number">0</span>).show();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>前面引进了两个函数，我们挨个查看一下</p>
+<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.1cftb7q0szxc.webp"></p>
+<p>我们可以看到第一个加密函数，使用了key为123456789，然后和输入的内容进行异或</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.ilililililil;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* loaded from: classes.dex */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Encoder</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> <span class="variable">key</span> <span class="operator">=</span> <span class="number">123456789</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">encode</span><span class="params">(String str)</span> &#123;</span><br><span class="line">        <span class="type">StringBuilder</span> <span class="variable">sb</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuilder</span>();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">char</span> c : str.toCharArray()) &#123;</span><br><span class="line">            sb.append((<span class="type">char</span>) (c ^ <span class="built_in">this</span>.key));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sb.toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们看一下下一个函数。这里就是一个坑，他把第一个函数中的key值改成了987654321，所以后面异或的key为987654321</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.ilililililil;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Field;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* loaded from: classes.dex */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MainActlvity</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">MainActlvity</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="type">Field</span> <span class="variable">declaredField</span> <span class="operator">=</span> Encoder.class.getDeclaredField(<span class="string">&quot;key&quot;</span>);</span><br><span class="line">            declaredField.setAccessible(<span class="literal">true</span>);</span><br><span class="line">            declaredField.set(MainActivity.encoder, <span class="number">987654321</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IllegalAccessException | NoSuchFieldException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>到现在我们已经知道了异或的key以及密文，所以我们就可以直接写脚本解题目了</p>
+<p>当然注意一个很关键的地方因为他的apk使用的unicode编码，但我们ascii码的表示范围是0x0-0xFF，所以到最后我们需要异或一个255或者0xff表示范围</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">code=<span class="string">&#x27;棿棢棢棲棥棷棊棐棁棚棨棨棵棢棌&#x27;</span></span><br><span class="line">key = <span class="number">987654321</span></span><br><span class="line">flag=<span class="string">&quot;&quot;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> code:</span><br><span class="line">  flag+=<span class="built_in">chr</span>((<span class="built_in">ord</span>(i)^key)%<span class="number">128</span>) <span class="comment">#确定在0~128</span></span><br><span class="line"><span class="built_in">print</span>(flag)</span><br><span class="line"></span><br><span class="line"><span class="comment"># NSSCTF&#123;apkYYDS&#125;</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/09/25/newstarctf/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          newstarctf
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/09/21/web%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">web入门记录</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2023 wuming
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/preccrep/hexo-theme-jelly" target="_blank">Jelly</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+
+<script src="/js/main.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
