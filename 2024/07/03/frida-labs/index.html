@@ -1,15 +1,22 @@
+
+
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
   
-  <title>frida_labs | 花开再美，怎如初见..?</title>
-
-  <!-- keywords -->
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="wuming">
+  <meta name="keywords" content="">
   
-
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="[原创]Frida-Hook-Java层操作大全-Android安全-看雪-安全社区|安全招聘|kanxue.com [原创]Frida-Hook-Native层操作大全-Android安全-看雪-安全社区|安全招聘|kanxue.com Frida 0x1修改函数返回值&amp;&amp;给函数传自定义参数程序的主要逻辑是调用一个random的函数，然后对我们的输入进行检测是否是数字，如果是就使">
+    <meta name="description" content="[原创]Frida-Hook-Java层操作大全-Android安全-看雪-安全社区|安全招聘|kanxue.com [原创]Frida-Hook-Native层操作大全-Android安全-看雪-安全社区|安全招聘|kanxue.com Frida 0x1修改函数返回值&amp;&amp;给函数传自定义参数程序的主要逻辑是调用一个random的函数，然后对我们的输入进行检测是否是数字，如果是就使">
 <meta property="og:type" content="article">
 <meta property="og:title" content="frida_labs">
 <meta property="og:url" content="https://wuming.github.io/2024/07/03/frida-labs/index.html">
@@ -37,194 +44,258 @@
 <meta property="article:published_time" content="2024-07-03T08:44:04.000Z">
 <meta property="article:modified_time" content="2024-07-03T08:53:23.977Z">
 <meta property="article:author" content="wuming">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://wuming.github.io/assets/image-20240603150155414.png">
   
-    <link rel="alternative" href="/atom.xml" title="花开再美，怎如初见..?" type="application/atom+xml">
   
   
-    <link rel="icon" href="/img/favicon.ico">
-  
-  
-<link rel="stylesheet" href="/css/style.css">
+  <title>frida_labs - 花开再美，怎如初见..?</title>
 
-  
-  
-
-  
-<script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
-
-  
-<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
 
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
   
-<meta name="generator" content="Hexo 6.3.0"></head>
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"wuming.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="花开再美，怎如初见..?" type="application/atom+xml">
+</head>
+
+
 <body>
-  <div id="container">
-    <div id="particles-js"></div>
-    <div class="left-col">
-    <div class="overlay"></div>
-<div class="intrude-less">
-	<header id="header" class="inner">
-		<a href="/" class="profilepic">
-			
-				<img lazy-src="https://cdn.jsdelivr.net/gh/shenshuoyaoyouguangha/blogimg@master/202308172157431.png" class="js-avatar">
-			
-		</a>
+  
 
-		<hgroup>
-			<h1 class="header-author"><a href="/">wuming</a></h1>
-		</hgroup>
+  <header>
+    
 
-		
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
 
-		<div class="switch-area">
-			<div class="switch-wrap">
-				<section class="switch-part switch-part1">
-					<nav class="header-menu">
-						<ul>
-						
-							<li><a href="/">Home</a></li>
-				        
-							<li><a href="/archives">Archives</a></li>
-				        
-						</ul>
-					</nav>
-					<nav class="half-header-menu">
-						<a class="hide">Home</a>
-						<a>Tags</a>
-						<a>Links</a>
-						<a>About</a>
-					</nav>
-					<nav class="header-nav">
-						<div class="social">
-							
-								<a class="github" target="_blank" href="https://github.com/shenshuoyaoyouguangha" title="github">github</a>
-					        
-								<a class="mail" target="_blank" href="mailto:2993669760@qq.com" title="mail">mail</a>
-					        
-								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
-					        
-						</div>
-						<!-- music -->
-						
-							<!-- <div style="position: absolute; bottom: 120px; left: auto; width: 85%;"> -->
-							<div style="position: absolute; left: auto; width: 85%;">
-								<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=220 height=86 src="//music.163.com/outchain/player?type=2&id=1397345903&auto=1&height=66"></iframe>
-							</div>
-						
-					</nav>
-				</section>
-				
-				
-				<section class="switch-part switch-part2">
-					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Pwn/" style="font-size: 10px;">Pwn</a> <a href="/tags/RE/" style="font-size: 10px;">RE</a> <a href="/tags/WEB/" style="font-size: 10px;">WEB</a> <a href="/tags/Web/" style="font-size: 10px;">Web</a> <a href="/tags/ctf/" style="font-size: 20px;">ctf</a> <a href="/tags/litctf/" style="font-size: 10px;">litctf</a> <a href="/tags/pwn/" style="font-size: 10px;">pwn</a> <a href="/tags/re/" style="font-size: 10px;">re</a> <a href="/tags/write-up/" style="font-size: 10px;">write up</a>
-					</div>
-				</section>
-				
-				
-				
-				<section class="switch-part switch-part3">
-					<div id="js-friends">
-					
-			          <a target="_blank" class="main-nav-link switch-friends-link" href="/null">github</a>
-			        
-			        </div>
-				</section>
-				
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
 
-				
-				
-				<section class="switch-part switch-part4">
-				
-					<div id="js-aboutme">一名正在学习的ctfer...</div>
-				</section>
-				
-			</div>
-		</div>
-	</header>				
-</div>
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
     </div>
-    <div class="mid-col">
-      <nav id="mobile-nav">
-  	<div class="overlay">
-  		<div class="slider-trigger"></div>
-  		<h1 class="header-author js-mobile-header hide"></h1>
-  	</div>
-	<div class="intrude-less">
-		<header id="header" class="inner">
-			<div class="profilepic">
-				<img lazy-src="https://cdn.jsdelivr.net/gh/shenshuoyaoyouguangha/blogimg@master/202308172157431.png" class="js-avatar">
-			</div>
-			<hgroup>
-			  <h1 class="header-author"></h1>
-			</hgroup>
-			
-			<nav class="header-menu">
-				<ul>
-				
-					<li><a href="/">Home</a></li>
-		        
-					<li><a href="/archives">Archives</a></li>
-		        
-		        <div class="clearfix"></div>
-				</ul>
-			</nav>
-			<nav class="header-nav">
-				<div class="social">
-					
-						<a class="github" target="_blank" href="https://github.com/shenshuoyaoyouguangha" title="github">github</a>
-			        
-						<a class="mail" target="_blank" href="mailto:2993669760@qq.com" title="mail">mail</a>
-			        
-						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
-			        
-				</div>
-			</nav>
-		</header>				
-	</div>
+  </div>
 </nav>
-      <div class="body-wrap"><article id="post-frida-labs" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2024/07/03/frida-labs/" class="article-date">
-  	<time datetime="2024-07-03T08:44:04.000Z" itemprop="datePublished">2024-07-03</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      frida_labs
-      
-    </h1>
+
   
 
-      </header>
-      
-      <div class="article-info article-info-post">
-        
-        
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="frida_labs"></span>
+          
+        </div>
 
         
-        <div class="clearfix"></div>
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-07-03 16:44" pubdate>
+          2024年7月3日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          27 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
       </div>
+
       
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
     
-    <div class="article-entry" itemprop="articleBody">
       
-        <p>[<a target="_blank" rel="noopener" href="https://bbs.kanxue.com/thread-280758.htm#msg_header_h3_1">原创]Frida-Hook-Java层操作大全-Android安全-看雪-安全社区|安全招聘|kanxue.com</a></p>
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">frida_labs</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>[<a target="_blank" rel="noopener" href="https://bbs.kanxue.com/thread-280758.htm#msg_header_h3_1">原创]Frida-Hook-Java层操作大全-Android安全-看雪-安全社区|安全招聘|kanxue.com</a></p>
 <p>[<a target="_blank" rel="noopener" href="https://bbs.kanxue.com/thread-280812.htm">原创]Frida-Hook-Native层操作大全-Android安全-看雪-安全社区|安全招聘|kanxue.com</a></p>
 <h2 id="Frida-0x1"><a href="#Frida-0x1" class="headerlink" title="Frida 0x1"></a>Frida 0x1</h2><h3 id="修改函数返回值-给函数传自定义参数"><a href="#修改函数返回值-给函数传自定义参数" class="headerlink" title="修改函数返回值&amp;&amp;给函数传自定义参数"></a>修改函数返回值&amp;&amp;给函数传自定义参数</h3><p>程序的主要逻辑是调用一个random的函数，然后对我们的输入进行检测是否是数字，如果是就使用check函数对随机数和我们输入的数进行对比，如果正确则输出flag</p>
-<p><img src="/./assets/image-20240603150155414.png" alt="image-20240603150155414"></p>
+<p><img src="/./assets/image-20240603150155414.png" srcset="/img/loading.gif" lazyload alt="image-20240603150155414"></p>
 <p>对于hook来讲，可以直接hookr random使其固定返回一个值，活着hook check函数，手动传入值</p>
 <blockquote>
 <ul>
@@ -233,40 +304,40 @@
 <li><code>&lt;class_reference&gt;.&lt;method_to_hook&gt;.implementation = function(&lt;args&gt;) &#123;&#125;</code><br>在所选的类内部，通过 <code>&lt;class_reference&gt;.&lt;method_to_hook&gt;</code> 符号访问你想要钩取的方法。这是你可以定义自己的逻辑以在钩取的方法被调用时执行的地方。<code>&lt;args&gt;</code> 表示传递给函数的参数。</li>
 </ul>
 </blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">hook</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="keyword">var</span> <span class="title class_">MainActivity</span> = <span class="title class_">Java</span>.<span class="title function_">use</span>(<span class="string">&quot;com.ad2001.frida0x1.MainActivity&quot;</span>);</span><br><span class="line">    <span class="title class_">MainActivity</span>.<span class="property">get_random</span>.<span class="property">implementation</span> = <span class="keyword">function</span> (<span class="params"></span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">hook2</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="keyword">var</span> <span class="title class_">Mainactivity</span> = <span class="title class_">Java</span>.<span class="title function_">use</span>(<span class="string">&#x27;com.ad2001.frida0x1.MainActivity&#x27;</span>);</span><br><span class="line">    <span class="title class_">Mainactivity</span>.<span class="property">check</span>.<span class="title function_">overload</span>(<span class="string">&#x27;int&#x27;</span>,<span class="string">&#x27;int&#x27;</span>).<span class="property">implementation</span> = <span class="keyword">function</span> (<span class="params">a,b</span>)&#123;</span><br><span class="line">        a=<span class="number">0</span>;</span><br><span class="line">        b=<span class="number">4</span>;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;i1 and i2 = &quot;</span>,a,b);</span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="title function_">check</span>(a,b);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">main</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="title class_">Java</span>.<span class="title function_">perform</span>(<span class="keyword">function</span> (<span class="params"></span>)&#123;</span><br><span class="line">        <span class="title function_">hook</span>();</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">setImmediate</span>(main);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">hook</span>(<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-keyword">var</span> <span class="hljs-title class_">MainActivity</span> = <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">&quot;com.ad2001.frida0x1.MainActivity&quot;</span>);<br>    <span class="hljs-title class_">MainActivity</span>.<span class="hljs-property">get_random</span>.<span class="hljs-property">implementation</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">hook2</span>(<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-keyword">var</span> <span class="hljs-title class_">Mainactivity</span> = <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">&#x27;com.ad2001.frida0x1.MainActivity&#x27;</span>);<br>    <span class="hljs-title class_">Mainactivity</span>.<span class="hljs-property">check</span>.<span class="hljs-title function_">overload</span>(<span class="hljs-string">&#x27;int&#x27;</span>,<span class="hljs-string">&#x27;int&#x27;</span>).<span class="hljs-property">implementation</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">a,b</span>)&#123;<br>        a=<span class="hljs-number">0</span>;<br>        b=<span class="hljs-number">4</span>;<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;i1 and i2 = &quot;</span>,a,b);<br>        <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">check</span>(a,b);<br>    &#125;<br>&#125;<br><span class="hljs-keyword">function</span> <span class="hljs-title function_">main</span>(<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">perform</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)&#123;<br>        <span class="hljs-title function_">hook</span>();<br>    &#125;)<br>&#125;<br><br><span class="hljs-title function_">setImmediate</span>(main);<br></code></pre></td></tr></table></figure>
 
 <span id="more"></span> 
 
-<h2 id="Frida-0x2"><a href="#Frida-0x2" class="headerlink" title="Frida 0x2"></a>Frida 0x2</h2><h3 id="调用程序未调用的函数"><a href="#调用程序未调用的函数" class="headerlink" title="调用程序未调用的函数"></a>调用程序未调用的函数</h3><p><img src="/./assets/image-20240603191319536.png" alt="image-20240603191319536"></p>
+<h2 id="Frida-0x2"><a href="#Frida-0x2" class="headerlink" title="Frida 0x2"></a>Frida 0x2</h2><h3 id="调用程序未调用的函数"><a href="#调用程序未调用的函数" class="headerlink" title="调用程序未调用的函数"></a>调用程序未调用的函数</h3><p><img src="/./assets/image-20240603191319536.png" srcset="/img/loading.gif" lazyload alt="image-20240603191319536"></p>
 <p>使用setImmediate的时候可能会hook不到，猜测是hook的截取时间比main的启动时间早了，所以使用settimeout延迟一会hook就能hook到了</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">hook</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="keyword">var</span> <span class="title class_">MainActivity</span> = <span class="title class_">Java</span>.<span class="title function_">use</span>(<span class="string">&quot;com.ad2001.frida0x2.MainActivity&quot;</span>);</span><br><span class="line">    <span class="title class_">MainActivity</span>.<span class="title function_">get_flag</span>(<span class="number">4919</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">main</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="title class_">Java</span>.<span class="title function_">perform</span>(<span class="keyword">function</span> (<span class="params"></span>)&#123;</span><br><span class="line">        <span class="title function_">hook</span>();</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// setImmediate(main);</span></span><br><span class="line"><span class="built_in">setTimeout</span>(main,<span class="number">1000</span>);</span><br><span class="line"></span><br><span class="line"># ffrida -<span class="variable constant_">UF</span> -l <span class="number">1.</span>js</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">hook</span>(<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-keyword">var</span> <span class="hljs-title class_">MainActivity</span> = <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">&quot;com.ad2001.frida0x2.MainActivity&quot;</span>);<br>    <span class="hljs-title class_">MainActivity</span>.<span class="hljs-title function_">get_flag</span>(<span class="hljs-number">4919</span>);<br>&#125;<br><span class="hljs-keyword">function</span> <span class="hljs-title function_">main</span>(<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">perform</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)&#123;<br>        <span class="hljs-title function_">hook</span>();<br>    &#125;)<br>&#125;<br><br><span class="hljs-comment">// setImmediate(main);</span><br><span class="hljs-built_in">setTimeout</span>(main,<span class="hljs-number">1000</span>);<br><br># ffrida -<span class="hljs-variable constant_">UF</span> -l <span class="hljs-number">1.</span>js<br></code></pre></td></tr></table></figure>
 
 
 
 <h2 id="Frida-0x3"><a href="#Frida-0x3" class="headerlink" title="Frida 0x3"></a>Frida 0x3</h2><h3 id="更改类中的静态变量"><a href="#更改类中的静态变量" class="headerlink" title="更改类中的静态变量"></a>更改类中的静态变量</h3><p>类似于如下写法static int code &#x3D; 0;<br>使用static 修饰的变量则为静态变量。我们可以用如下方法更改静态变量</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Java</span>.<span class="title function_">perform</span>(<span class="keyword">function</span> (<span class="params"></span>)&#123;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> &lt;class_reference&gt; = <span class="title class_">Java</span>.<span class="title function_">use</span>(<span class="string">&quot;&lt;package_name&gt;.&lt;class&gt;&quot;</span>);</span><br><span class="line">&lt;class_reference&gt;.&lt;variable&gt;.<span class="property">value</span> = &lt;value&gt;;</span><br><span class="line"></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title class_">Java</span>.<span class="hljs-title function_">perform</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)&#123;<br><br><span class="hljs-keyword">var</span> &lt;class_reference&gt; = <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">&quot;&lt;package_name&gt;.&lt;class&gt;&quot;</span>);<br>&lt;class_reference&gt;.&lt;variable&gt;.<span class="hljs-property">value</span> = &lt;value&gt;;<br><br>&#125;)<br></code></pre></td></tr></table></figure>
 
-<p><img src="/./assets/image-20240603171040737.png" alt="image-20240603171040737"></p>
-<p><img src="/./assets/image-20240603171055917.png" alt="image-20240603171055917"></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">hook</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="keyword">var</span> <span class="title class_">Checker</span> = <span class="title class_">Java</span>.<span class="title function_">use</span>(<span class="string">&quot;com.ad2001.frida0x3.Checker&quot;</span>);</span><br><span class="line">    <span class="title class_">Checker</span>.<span class="property">code</span>.<span class="property">value</span>=<span class="number">512</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">main</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="title class_">Java</span>.<span class="title function_">perform</span>(<span class="keyword">function</span> (<span class="params"></span>)&#123;</span><br><span class="line">        <span class="title function_">hook</span>();</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">setImmediate</span>(main);</span><br><span class="line"><span class="comment">// setTimeout(main,1000);</span></span><br></pre></td></tr></table></figure>
+<p><img src="/./assets/image-20240603171040737.png" srcset="/img/loading.gif" lazyload alt="image-20240603171040737"></p>
+<p><img src="/./assets/image-20240603171055917.png" srcset="/img/loading.gif" lazyload alt="image-20240603171055917"></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">hook</span>(<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-keyword">var</span> <span class="hljs-title class_">Checker</span> = <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">&quot;com.ad2001.frida0x3.Checker&quot;</span>);<br>    <span class="hljs-title class_">Checker</span>.<span class="hljs-property">code</span>.<span class="hljs-property">value</span>=<span class="hljs-number">512</span>;<br>&#125;<br><span class="hljs-keyword">function</span> <span class="hljs-title function_">main</span>(<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">perform</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)&#123;<br>        <span class="hljs-title function_">hook</span>();<br>    &#125;)<br>&#125;<br><br><span class="hljs-title function_">setImmediate</span>(main);<br><span class="hljs-comment">// setTimeout(main,1000);</span><br></code></pre></td></tr></table></figure>
 
 
 
 <h2 id="Frida-0x4"><a href="#Frida-0x4" class="headerlink" title="Frida 0x4"></a>Frida 0x4</h2><h3 id="调用非MainActivity-非静态方法"><a href="#调用非MainActivity-非静态方法" class="headerlink" title="调用非MainActivity,非静态方法"></a>调用非MainActivity,非静态方法</h3><p>在JAVA代码中，如果创建了一个非静态的类，当我们需要使用这个类的时候需要new一个类的对象出来我们才能使用这个类的功能。类似代码如下：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Check</span> ch = <span class="keyword">new</span> <span class="title class_">Check</span>();</span><br><span class="line"><span class="title class_">String</span> flag = ch.<span class="title function_">get_flag</span>(<span class="number">1337</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title class_">Check</span> ch = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Check</span>();<br><span class="hljs-title class_">String</span> flag = ch.<span class="hljs-title function_">get_flag</span>(<span class="hljs-number">1337</span>);<br></code></pre></td></tr></table></figure>
 
 <p>那么在Java源码中需要new出来的实例，我们怎么使用Frida来实现呢？<br>模板如下：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Java</span>.<span class="title function_">perform</span>(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line"> </span><br><span class="line">  <span class="keyword">var</span> &lt;class_reference&gt; = <span class="title class_">Java</span>.<span class="title function_">use</span>(<span class="string">&quot;&lt;package_name&gt;.&lt;class&gt;&quot;</span>);</span><br><span class="line">  <span class="keyword">var</span> &lt;class_instance&gt; = &lt;class_reference&gt;.$new(); <span class="comment">// Class Object</span></span><br><span class="line">  &lt;class_instance&gt;.&lt;method&gt;(); <span class="comment">// 调用方法</span></span><br><span class="line"> </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title class_">Java</span>.<span class="hljs-title function_">perform</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br> <br>  <span class="hljs-keyword">var</span> &lt;class_reference&gt; = <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">&quot;&lt;package_name&gt;.&lt;class&gt;&quot;</span>);<br>  <span class="hljs-keyword">var</span> &lt;class_instance&gt; = &lt;class_reference&gt;.$new(); <span class="hljs-comment">// Class Object</span><br>  &lt;class_instance&gt;.&lt;method&gt;(); <span class="hljs-comment">// 调用方法</span><br> <br>&#125;)<br></code></pre></td></tr></table></figure>
 
 <blockquote>
 <p>静态类和非静态类的区别，非静态类可以被实例化，就像一个结构体一样，而静态类就像函数一样是直接传入值调用的</p>
 </blockquote>
 <p>例子：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//静态类</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">MathUtilities</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">Add</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> a + b;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">Subtract</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> a - b;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 调用静态方法</span></span><br><span class="line"><span class="type">int</span> <span class="variable">sum</span> <span class="operator">=</span> MathUtilities.Add(<span class="number">3</span>, <span class="number">5</span>);</span><br><span class="line"><span class="type">int</span> <span class="variable">difference</span> <span class="operator">=</span> MathUtilities.Subtract(<span class="number">10</span>, <span class="number">4</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//非静态类</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Person</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> string Name &#123; get; set; &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> Age &#123; get; set; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">Introduce</span><span class="params">()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine($<span class="string">&quot;Hi, my name is &#123;Name&#125; and I am &#123;Age&#125; years old.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建对象</span></span><br><span class="line"><span class="type">Person</span> <span class="variable">person1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Person</span>();</span><br><span class="line">person1.Name = <span class="string">&quot;Alice&quot;</span>;</span><br><span class="line">person1.Age = <span class="number">30</span>;</span><br><span class="line">person1.Introduce(); <span class="comment">// 输出: Hi, my name is Alice and I am 30 years old.</span></span><br><span class="line"></span><br><span class="line"><span class="type">Person</span> <span class="variable">person2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Person</span>();</span><br><span class="line">person2.Name = <span class="string">&quot;Bob&quot;</span>;</span><br><span class="line">person2.Age = <span class="number">25</span>;</span><br><span class="line">person2.Introduce(); <span class="comment">// 输出: Hi, my name is Bob and I am 25 years old.</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//静态类</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MathUtilities</span><br>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">int</span> <span class="hljs-title function_">Add</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span><br>    &#123;<br>        <span class="hljs-keyword">return</span> a + b;<br>    &#125;<br>    <br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">int</span> <span class="hljs-title function_">Subtract</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span><br>    &#123;<br>        <span class="hljs-keyword">return</span> a - b;<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">// 调用静态方法</span><br><span class="hljs-type">int</span> <span class="hljs-variable">sum</span> <span class="hljs-operator">=</span> MathUtilities.Add(<span class="hljs-number">3</span>, <span class="hljs-number">5</span>);<br><span class="hljs-type">int</span> <span class="hljs-variable">difference</span> <span class="hljs-operator">=</span> MathUtilities.Subtract(<span class="hljs-number">10</span>, <span class="hljs-number">4</span>);<br><br><span class="hljs-comment">//非静态类</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Person</span><br>&#123;<br>    <span class="hljs-keyword">public</span> string Name &#123; get; set; &#125;<br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> Age &#123; get; set; &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">Introduce</span><span class="hljs-params">()</span><br>    &#123;<br>        Console.WriteLine($<span class="hljs-string">&quot;Hi, my name is &#123;Name&#125; and I am &#123;Age&#125; years old.&quot;</span>);<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">// 创建对象</span><br><span class="hljs-type">Person</span> <span class="hljs-variable">person1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Person</span>();<br>person1.Name = <span class="hljs-string">&quot;Alice&quot;</span>;<br>person1.Age = <span class="hljs-number">30</span>;<br>person1.Introduce(); <span class="hljs-comment">// 输出: Hi, my name is Alice and I am 30 years old.</span><br><br><span class="hljs-type">Person</span> <span class="hljs-variable">person2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Person</span>();<br>person2.Name = <span class="hljs-string">&quot;Bob&quot;</span>;<br>person2.Age = <span class="hljs-number">25</span>;<br>person2.Introduce(); <span class="hljs-comment">// 输出: Hi, my name is Bob and I am 25 years old.</span><br><br><br></code></pre></td></tr></table></figure>
 
 
 
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">hook</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;hook succse&#x27;</span>);</span><br><span class="line">    <span class="keyword">var</span> <span class="title class_">Check</span> = <span class="title class_">Java</span>.<span class="title function_">use</span>(<span class="string">&quot;com.ad2001.frida0x4.Check&quot;</span>);</span><br><span class="line">    <span class="keyword">var</span> check_obj = <span class="title class_">Check</span>.$new();</span><br><span class="line">    <span class="keyword">var</span> string = check_obj.<span class="title function_">get_flag</span>(<span class="number">1337</span>);</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(string)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">main</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="title class_">Java</span>.<span class="title function_">perform</span>(<span class="keyword">function</span> (<span class="params"></span>)&#123;</span><br><span class="line">        <span class="title function_">hook</span>();</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">setImmediate</span>(main);</span><br><span class="line"><span class="comment">// setTimeout(main,1000);</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">hook</span>(<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;hook succse&#x27;</span>);<br>    <span class="hljs-keyword">var</span> <span class="hljs-title class_">Check</span> = <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">&quot;com.ad2001.frida0x4.Check&quot;</span>);<br>    <span class="hljs-keyword">var</span> check_obj = <span class="hljs-title class_">Check</span>.$new();<br>    <span class="hljs-keyword">var</span> string = check_obj.<span class="hljs-title function_">get_flag</span>(<span class="hljs-number">1337</span>);<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(string)<br>&#125;<br><span class="hljs-keyword">function</span> <span class="hljs-title function_">main</span>(<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">perform</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)&#123;<br>        <span class="hljs-title function_">hook</span>();<br>    &#125;)<br>&#125;<br><br><span class="hljs-title function_">setImmediate</span>(main);<br><span class="hljs-comment">// setTimeout(main,1000);</span><br></code></pre></td></tr></table></figure>
 
 
 
@@ -279,7 +350,7 @@
 <li><code>Java.choose</code>：在运行时枚举指定Java类（作为第一个参数提供）的实例。</li>
 </ul>
 <p>模板：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Java</span>.<span class="title function_">performNow</span>(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="title class_">Java</span>.<span class="title function_">choose</span>(<span class="string">&#x27;&lt;包名&gt;.&lt;类名&gt;&#x27;</span>, &#123;</span><br><span class="line">    <span class="attr">onMatch</span>: <span class="keyword">function</span>(<span class="params">instance</span>) &#123;</span><br><span class="line">      <span class="comment">// 待办事项</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">onComplete</span>: <span class="keyword">function</span>(<span class="params"></span>) &#123;&#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title class_">Java</span>.<span class="hljs-title function_">performNow</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">choose</span>(<span class="hljs-string">&#x27;&lt;包名&gt;.&lt;类名&gt;&#x27;</span>, &#123;<br>    <span class="hljs-attr">onMatch</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params">instance</span>) &#123;<br>      <span class="hljs-comment">// 待办事项</span><br>    &#125;,<br>    <span class="hljs-attr">onComplete</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;&#125;<br>  &#125;);<br>&#125;);<br></code></pre></td></tr></table></figure>
 
 <p>这里有两个回调函数：</p>
 <ul>
@@ -295,10 +366,10 @@
 </ul>
 </li>
 </ul>
-<p><img src="/./assets/image-20240603192751063.png" alt="image-20240603192751063"></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">hook</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="title class_">Java</span>.<span class="title function_">choose</span>(<span class="string">&#x27;com.ad2001.frida0x5.MainActivity&#x27;</span>, &#123;</span><br><span class="line">        <span class="attr">onMatch</span>: <span class="keyword">function</span> (<span class="params">MainActivity</span>) &#123;</span><br><span class="line">            <span class="title class_">MainActivity</span>.<span class="title function_">flag</span>(<span class="number">1337</span>);</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;hook succse&#x27;</span>)</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">onComplete</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;&#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">main</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="title class_">Java</span>.<span class="title function_">perform</span>(<span class="keyword">function</span> (<span class="params"></span>)&#123;</span><br><span class="line">        <span class="title function_">hook</span>();</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">setImmediate</span>(main);</span><br><span class="line"><span class="comment">// setTimeout(main,1000);</span></span><br></pre></td></tr></table></figure>
+<p><img src="/./assets/image-20240603192751063.png" srcset="/img/loading.gif" lazyload alt="image-20240603192751063"></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">hook</span>(<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">choose</span>(<span class="hljs-string">&#x27;com.ad2001.frida0x5.MainActivity&#x27;</span>, &#123;<br>        <span class="hljs-attr">onMatch</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">MainActivity</span>) &#123;<br>            <span class="hljs-title class_">MainActivity</span>.<span class="hljs-title function_">flag</span>(<span class="hljs-number">1337</span>);<br>            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;hook succse&#x27;</span>)<br>        &#125;,<br>        <span class="hljs-attr">onComplete</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;&#125;<br>    &#125;);<br>&#125;<br><span class="hljs-keyword">function</span> <span class="hljs-title function_">main</span>(<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">perform</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)&#123;<br>        <span class="hljs-title function_">hook</span>();<br>    &#125;)<br>&#125;<br><br><span class="hljs-title function_">setImmediate</span>(main);<br><span class="hljs-comment">// setTimeout(main,1000);</span><br></code></pre></td></tr></table></figure>
 
-<p><img src="/./assets/image-20240603193446665.png" alt="image-20240603193446665"></p>
+<p><img src="/./assets/image-20240603193446665.png" srcset="/img/loading.gif" lazyload alt="image-20240603193446665"></p>
 <h2 id="Frida-0x6"><a href="#Frida-0x6" class="headerlink" title="Frida 0x6"></a>Frida 0x6</h2><h3 id="MainActivity中非静态并且参数为非静态变量方法调用"><a href="#MainActivity中非静态并且参数为非静态变量方法调用" class="headerlink" title="MainActivity中非静态并且参数为非静态变量方法调用"></a>MainActivity中非静态并且参数为非静态变量方法调用</h3><ul>
 <li>创建一个<code>Checker</code>类的实例。</li>
 <li>将<code>num1</code>设置为1234，<code>num2</code>设置为4321。</li>
@@ -306,20 +377,20 @@
 <li>使用实例作为参数调用<code>get_flag</code>方法。</li>
 </ul>
 <p>MainActivity没有调用的一个非静态方法，非静态方法中设置一组非静态变量，这就相当于结合了上面学的两种方法，可以先使用frida 0x3的方法更改类的变量，然后再使用frida 0x5的方式调用mainactivity的非静态方法</p>
-<p><img src="/./assets/image-20240603200154611.png" alt="image-20240603200154611"></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">hook</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="title class_">Java</span>.<span class="title function_">choose</span>(<span class="string">&#x27;com.ad2001.frida0x6.MainActivity&#x27;</span>,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">onMatch</span>:<span class="keyword">function</span> (<span class="params">MainActivity</span>)&#123;</span><br><span class="line">                <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;hook succse&#x27;</span>);</span><br><span class="line"></span><br><span class="line">                <span class="keyword">var</span> <span class="title class_">Checker</span> = <span class="title class_">Java</span>.<span class="title function_">use</span>(<span class="string">&#x27;com.ad2001.frida0x6.Checker&#x27;</span>)</span><br><span class="line">                <span class="keyword">var</span> <span class="title class_">Checker</span>_obj = <span class="title class_">Checker</span>.$new()</span><br><span class="line">                <span class="title class_">Checker</span>_obj.<span class="property">num1</span>.<span class="property">value</span> = <span class="number">1234</span>;</span><br><span class="line">                <span class="title class_">Checker</span>_obj.<span class="property">num2</span>.<span class="property">value</span> = <span class="number">4321</span>;</span><br><span class="line">                <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Checker</span>_obj.<span class="property">num1</span>.<span class="property">value</span>,<span class="title class_">Checker</span>_obj.<span class="property">num2</span>.<span class="property">value</span>);</span><br><span class="line">                <span class="title class_">MainActivity</span>.<span class="title function_">get_flag</span>(<span class="title class_">Checker</span>_obj);</span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="attr">onComplete</span>:<span class="keyword">function</span>(<span class="params"></span>)&#123;&#125;</span><br><span class="line">        &#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">main</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="title class_">Java</span>.<span class="title function_">perform</span>(<span class="keyword">function</span> (<span class="params"></span>)&#123;</span><br><span class="line">        <span class="title function_">hook</span>();</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">setImmediate</span>(main);</span><br><span class="line"><span class="comment">// setTimeout(main,1000);</span></span><br></pre></td></tr></table></figure>
+<p><img src="/./assets/image-20240603200154611.png" srcset="/img/loading.gif" lazyload alt="image-20240603200154611"></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">hook</span>(<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">choose</span>(<span class="hljs-string">&#x27;com.ad2001.frida0x6.MainActivity&#x27;</span>,<br>        &#123;<br>            <span class="hljs-attr">onMatch</span>:<span class="hljs-keyword">function</span> (<span class="hljs-params">MainActivity</span>)&#123;<br>                <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;hook succse&#x27;</span>);<br><br>                <span class="hljs-keyword">var</span> <span class="hljs-title class_">Checker</span> = <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">&#x27;com.ad2001.frida0x6.Checker&#x27;</span>)<br>                <span class="hljs-keyword">var</span> <span class="hljs-title class_">Checker</span>_obj = <span class="hljs-title class_">Checker</span>.$new()<br>                <span class="hljs-title class_">Checker</span>_obj.<span class="hljs-property">num1</span>.<span class="hljs-property">value</span> = <span class="hljs-number">1234</span>;<br>                <span class="hljs-title class_">Checker</span>_obj.<span class="hljs-property">num2</span>.<span class="hljs-property">value</span> = <span class="hljs-number">4321</span>;<br>                <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">Checker</span>_obj.<span class="hljs-property">num1</span>.<span class="hljs-property">value</span>,<span class="hljs-title class_">Checker</span>_obj.<span class="hljs-property">num2</span>.<span class="hljs-property">value</span>);<br>                <span class="hljs-title class_">MainActivity</span>.<span class="hljs-title function_">get_flag</span>(<span class="hljs-title class_">Checker</span>_obj);<br>            &#125;,<br>            <span class="hljs-attr">onComplete</span>:<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;&#125;<br>        &#125;)<br>&#125;<br><span class="hljs-keyword">function</span> <span class="hljs-title function_">main</span>(<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">perform</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)&#123;<br>        <span class="hljs-title function_">hook</span>();<br>    &#125;)<br>&#125;<br><br><span class="hljs-title function_">setImmediate</span>(main);<br><span class="hljs-comment">// setTimeout(main,1000);</span><br></code></pre></td></tr></table></figure>
 
 <h2 id="Frida-0x7"><a href="#Frida-0x7" class="headerlink" title="Frida 0x7"></a>Frida 0x7</h2><h3 id="Hook构造函数"><a href="#Hook构造函数" class="headerlink" title="Hook构造函数"></a>Hook构造函数</h3><p>挂钩构造函数十分简单，与挂钩方法类似。让我为您提供一个模板。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Java</span>.<span class="title function_">perform</span>(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> &lt;class_reference&gt; = <span class="title class_">Java</span>.<span class="title function_">use</span>(<span class="string">&quot;&lt;package_name&gt;.&lt;class&gt;&quot;</span>);</span><br><span class="line">  &lt;class_reference&gt;.<span class="property">$init</span>.<span class="property">implementation</span> = <span class="keyword">function</span>(<span class="params">&lt;args&gt;</span>)&#123;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment"> </span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line"> </span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title class_">Java</span>.<span class="hljs-title function_">perform</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">var</span> &lt;class_reference&gt; = <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">&quot;&lt;package_name&gt;.&lt;class&gt;&quot;</span>);<br>  &lt;class_reference&gt;.<span class="hljs-property">$init</span>.<span class="hljs-property">implementation</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params">&lt;args&gt;</span>)&#123;<br> <br>    <span class="hljs-comment">/*</span><br><span class="hljs-comment"> </span><br><span class="hljs-comment">    */</span><br> <br>  &#125;<br>&#125;);<br></code></pre></td></tr></table></figure>
 
 <p>构造函数的方法：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">hook</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="keyword">var</span> <span class="title class_">Checker</span> = <span class="title class_">Java</span>.<span class="title function_">use</span>(<span class="string">&quot;com.ad2001.frida0x7.Checker&quot;</span>);</span><br><span class="line">    <span class="title class_">Checker</span>.<span class="property">$init</span>.<span class="property">implementation</span> = <span class="keyword">function</span> (<span class="params">a,b</span>)&#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Origin num&quot;</span>,a,b);</span><br><span class="line">        <span class="variable language_">this</span>.$init(<span class="number">600</span>,<span class="number">600</span>);</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Hook Success&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">main</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="title class_">Java</span>.<span class="title function_">perform</span>(<span class="keyword">function</span> (<span class="params"></span>)&#123;</span><br><span class="line">        <span class="title function_">hook</span>();</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// setImmediate(main);</span></span><br><span class="line"><span class="built_in">setTimeout</span>(main,<span class="number">1000</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">hook</span>(<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-keyword">var</span> <span class="hljs-title class_">Checker</span> = <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">&quot;com.ad2001.frida0x7.Checker&quot;</span>);<br>    <span class="hljs-title class_">Checker</span>.<span class="hljs-property">$init</span>.<span class="hljs-property">implementation</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">a,b</span>)&#123;<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Origin num&quot;</span>,a,b);<br>        <span class="hljs-variable language_">this</span>.$init(<span class="hljs-number">600</span>,<span class="hljs-number">600</span>);<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Hook Success&quot;</span>);<br>    &#125;<br>&#125;<br><span class="hljs-keyword">function</span> <span class="hljs-title function_">main</span>(<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">perform</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)&#123;<br>        <span class="hljs-title function_">hook</span>();<br>    &#125;)<br>&#125;<br><br><span class="hljs-comment">// setImmediate(main);</span><br><span class="hljs-built_in">setTimeout</span>(main,<span class="hljs-number">1000</span>);<br></code></pre></td></tr></table></figure>
 
 <p>改值的方法：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">hook</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="title class_">Java</span>.<span class="title function_">choose</span>(<span class="string">&#x27;com.ad2001.frida0x7.MainActivity&#x27;</span>,&#123;</span><br><span class="line">        <span class="attr">onMatch</span>:<span class="keyword">function</span> (<span class="params">MainActivity</span>)&#123;</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;hook succse&#x27;</span>)</span><br><span class="line"></span><br><span class="line">            <span class="keyword">var</span> <span class="title class_">Checker</span> = <span class="title class_">Java</span>.<span class="title function_">use</span>(<span class="string">&quot;com.ad2001.frida0x7.Checker&quot;</span>);</span><br><span class="line">            <span class="keyword">var</span> <span class="title class_">Checker</span>_obj = <span class="title class_">Checker</span>.$new(<span class="number">600</span>,<span class="number">600</span>);</span><br><span class="line">            <span class="title class_">MainActivity</span>.<span class="title function_">flag</span>(<span class="title class_">Checker</span>_obj)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">main</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="title class_">Java</span>.<span class="title function_">perform</span>(<span class="keyword">function</span> (<span class="params"></span>)&#123;</span><br><span class="line">        <span class="title function_">hook</span>();</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// setImmediate(main);</span></span><br><span class="line"><span class="built_in">setTimeout</span>(main,<span class="number">1000</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">hook</span>(<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">choose</span>(<span class="hljs-string">&#x27;com.ad2001.frida0x7.MainActivity&#x27;</span>,&#123;<br>        <span class="hljs-attr">onMatch</span>:<span class="hljs-keyword">function</span> (<span class="hljs-params">MainActivity</span>)&#123;<br>            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;hook succse&#x27;</span>)<br><br>            <span class="hljs-keyword">var</span> <span class="hljs-title class_">Checker</span> = <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">&quot;com.ad2001.frida0x7.Checker&quot;</span>);<br>            <span class="hljs-keyword">var</span> <span class="hljs-title class_">Checker</span>_obj = <span class="hljs-title class_">Checker</span>.$new(<span class="hljs-number">600</span>,<span class="hljs-number">600</span>);<br>            <span class="hljs-title class_">MainActivity</span>.<span class="hljs-title function_">flag</span>(<span class="hljs-title class_">Checker</span>_obj)<br>        &#125;<br>    &#125;)<br><br>&#125;<br><span class="hljs-keyword">function</span> <span class="hljs-title function_">main</span>(<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">perform</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)&#123;<br>        <span class="hljs-title function_">hook</span>();<br>    &#125;)<br>&#125;<br><br><span class="hljs-comment">// setImmediate(main);</span><br><span class="hljs-built_in">setTimeout</span>(main,<span class="hljs-number">1000</span>);<br></code></pre></td></tr></table></figure>
 
 <h2 id="Frida-0x8"><a href="#Frida-0x8" class="headerlink" title="Frida 0x8"></a>Frida 0x8</h2><h3 id="Hook-Native层中调用的函数并且读取传入的参数"><a href="#Hook-Native层中调用的函数并且读取传入的参数" class="headerlink" title="Hook Native层中调用的函数并且读取传入的参数"></a>Hook Native层中调用的函数并且读取传入的参数</h3><p>这个题目是针对native层的，对于Native层的函数Hook，我们使用如下模板</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Interceptor</span>.<span class="title function_">attach</span>(targetAddress, &#123;</span><br><span class="line">    <span class="attr">onEnter</span>: <span class="keyword">function</span> (<span class="params">args</span>) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Entering &#x27;</span> + functionName);</span><br><span class="line">        <span class="comment">// Modify or log arguments if needed</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">onLeave</span>: <span class="keyword">function</span> (<span class="params">retval</span>) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Leaving &#x27;</span> + functionName);</span><br><span class="line">        <span class="comment">// Modify or log return value if needed</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title class_">Interceptor</span>.<span class="hljs-title function_">attach</span>(targetAddress, &#123;<br>    <span class="hljs-attr">onEnter</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">args</span>) &#123;<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Entering &#x27;</span> + functionName);<br>        <span class="hljs-comment">// Modify or log arguments if needed</span><br>    &#125;,<br>    <span class="hljs-attr">onLeave</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">retval</span>) &#123;<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Leaving &#x27;</span> + functionName);<br>        <span class="hljs-comment">// Modify or log return value if needed</span><br>    &#125;<br>&#125;);<br></code></pre></td></tr></table></figure>
 
 <ul>
 <li><code>Interceptor.attach</code>：将回调函数附加到指定的函数地址。<code>targetAddress</code> 应该是我们想要挂钩的本地函数的地址。</li>
@@ -334,32 +405,32 @@
 <li><code>Module.getBaseAddress()</code><br>通过调用 Module.getBaseAddress() 函数，我们可以获取指定模块的基址地址，然后可以基于这个基址地址进行偏移计算，以定位模块内部的特定函数、变量或者数据结构</li>
 <li><code>Module.enumerateImports()</code><br>通过调用 Module.enumerateImports() 函数，我们可以获取到指定模块导入的外部函数或变量的名称、地址以及其他相关信息。</li>
 </ol>
-<p><img src="/./assets/image-20240604144832222.png" alt="image-20240604144832222"></p>
-<p><img src="/./assets/image-20240604144849140.png" alt="image-20240604144849140"></p>
+<p><img src="/./assets/image-20240604144832222.png" srcset="/img/loading.gif" lazyload alt="image-20240604144832222"></p>
+<p><img src="/./assets/image-20240604144849140.png" srcset="/img/loading.gif" lazyload alt="image-20240604144849140"></p>
 <p>可以看到strcmp的第一个参数是我们的输入值，第二个参数是flag，所以想办法把这个函数给勾出来就可以了</p>
 <p>我不是很清楚为什么我的enumerate没有回显</p>
-<p><img src="/./assets/image-20240604150254748.png" alt="image-20240604150254748"></p>
+<p><img src="/./assets/image-20240604150254748.png" srcset="/img/loading.gif" lazyload alt="image-20240604150254748"></p>
 <p>在我们用ida找到函数后可以使用get和find这两个api找到地址</p>
-<p><img src="/./assets/image-20240604150008695.png" alt="image-20240604150008695"></p>
+<p><img src="/./assets/image-20240604150008695.png" srcset="/img/loading.gif" lazyload alt="image-20240604150008695"></p>
 <p>getbase在于我们不知道他的函数名，找到基址后用ida看偏移，加上偏移就好了</p>
-<p><img src="/./assets/image-20240604150146569.png" alt="image-20240604150146569"></p>
-<p><img src="/./assets/image-20240604150221656.png" alt="image-20240604150221656"></p>
+<p><img src="/./assets/image-20240604150146569.png" srcset="/img/loading.gif" lazyload alt="image-20240604150146569"></p>
+<p><img src="/./assets/image-20240604150221656.png" srcset="/img/loading.gif" lazyload alt="image-20240604150221656"></p>
 <p>做题顺序是获得了地址后就可以使用模板进行hook了</p>
 <p>可以使用Memory.readUtf8String(args[0]);来获取我们的输入字符串，平且使用 if (input.includes(“111”))来判断</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">hook</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="keyword">var</span> strcmp_adr = <span class="title class_">Module</span>.<span class="title function_">findExportByName</span>(<span class="string">&quot;libc.so&quot;</span>, <span class="string">&quot;strcmp&quot;</span>);</span><br><span class="line">    <span class="title class_">Interceptor</span>.<span class="title function_">attach</span>(strcmp_adr, &#123;</span><br><span class="line">        <span class="attr">onEnter</span>: <span class="keyword">function</span> (<span class="params">args</span>) &#123;</span><br><span class="line">            <span class="keyword">var</span> arg0 = <span class="title class_">Memory</span>.<span class="title function_">readUtf8String</span>(args[<span class="number">0</span>]); <span class="comment">// first argument</span></span><br><span class="line">            <span class="keyword">var</span> flag = <span class="title class_">Memory</span>.<span class="title function_">readUtf8String</span>(args[<span class="number">1</span>]); <span class="comment">// second argument</span></span><br><span class="line">            <span class="keyword">if</span> (arg0.<span class="title function_">includes</span>(<span class="string">&quot;Hello&quot;</span>)) &#123;</span><br><span class="line"></span><br><span class="line">                <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Hookin the strcmp function&quot;</span>);</span><br><span class="line">                <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Input &quot;</span> + arg0);</span><br><span class="line">                <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;The flag is &quot;</span>+ flag);</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">onLeave</span>: <span class="keyword">function</span> (<span class="params">retval</span>) &#123;</span><br><span class="line">            <span class="comment">// Modify or log return value if needed</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">main</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="title class_">Java</span>.<span class="title function_">perform</span>(<span class="keyword">function</span> (<span class="params"></span>)&#123;</span><br><span class="line">        <span class="title function_">hook</span>();</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// setImmediate(main);</span></span><br><span class="line"><span class="built_in">setTimeout</span>(main,<span class="number">1000</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">hook</span>(<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-keyword">var</span> strcmp_adr = <span class="hljs-title class_">Module</span>.<span class="hljs-title function_">findExportByName</span>(<span class="hljs-string">&quot;libc.so&quot;</span>, <span class="hljs-string">&quot;strcmp&quot;</span>);<br>    <span class="hljs-title class_">Interceptor</span>.<span class="hljs-title function_">attach</span>(strcmp_adr, &#123;<br>        <span class="hljs-attr">onEnter</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">args</span>) &#123;<br>            <span class="hljs-keyword">var</span> arg0 = <span class="hljs-title class_">Memory</span>.<span class="hljs-title function_">readUtf8String</span>(args[<span class="hljs-number">0</span>]); <span class="hljs-comment">// first argument</span><br>            <span class="hljs-keyword">var</span> flag = <span class="hljs-title class_">Memory</span>.<span class="hljs-title function_">readUtf8String</span>(args[<span class="hljs-number">1</span>]); <span class="hljs-comment">// second argument</span><br>            <span class="hljs-keyword">if</span> (arg0.<span class="hljs-title function_">includes</span>(<span class="hljs-string">&quot;Hello&quot;</span>)) &#123;<br><br>                <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Hookin the strcmp function&quot;</span>);<br>                <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Input &quot;</span> + arg0);<br>                <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;The flag is &quot;</span>+ flag);<br><br>            &#125;<br>        &#125;,<br>        <span class="hljs-attr">onLeave</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">retval</span>) &#123;<br>            <span class="hljs-comment">// Modify or log return value if needed</span><br>        &#125;<br>    &#125;);<br>&#125;<br><span class="hljs-keyword">function</span> <span class="hljs-title function_">main</span>(<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">perform</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)&#123;<br>        <span class="hljs-title function_">hook</span>();<br>    &#125;)<br>&#125;<br><br><span class="hljs-comment">// setImmediate(main);</span><br><span class="hljs-built_in">setTimeout</span>(main,<span class="hljs-number">1000</span>);<br></code></pre></td></tr></table></figure>
 
 
 
 <h2 id="Frida-0x9"><a href="#Frida-0x9" class="headerlink" title="Frida 0x9"></a>Frida 0x9</h2><h3 id="Hook修改native层程序返回值"><a href="#Hook修改native层程序返回值" class="headerlink" title="Hook修改native层程序返回值"></a>Hook修改native层程序返回值</h3><p>hook的模板</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Interceptor</span>.<span class="title function_">attach</span>(functionaddr, &#123;</span><br><span class="line">    <span class="attr">onEnter</span>: <span class="keyword">function</span> (<span class="params">args</span>) &#123;</span><br><span class="line"> </span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">onLeave</span>: <span class="keyword">function</span> (<span class="params">retval</span>) &#123;</span><br><span class="line"> </span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title class_">Interceptor</span>.<span class="hljs-title function_">attach</span>(functionaddr, &#123;<br>    <span class="hljs-attr">onEnter</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">args</span>) &#123;<br> <br>    &#125;,<br>    <span class="hljs-attr">onLeave</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">retval</span>) &#123;<br> <br>    &#125;<br>&#125;);<br></code></pre></td></tr></table></figure>
 
 <p>可以看到在onLeave中有一个参数retval，这个retval，就是我们hook上的程序的返回值，我们可以使用retval.replace(val)来修改返回值。</p>
-<p><img src="/./assets/image-20240604152917826.png" alt="image-20240604152917826"></p>
-<p><img src="/./assets/image-20240604152943922.png" alt="image-20240604152943922"></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">hook</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="keyword">var</span> adr = <span class="title class_">Module</span>.<span class="title function_">findExportByName</span>(<span class="string">&quot;liba0x9.so&quot;</span>, <span class="string">&quot;Java_com_ad2001_a0x9_MainActivity_check_1flag&quot;</span>);</span><br><span class="line">    <span class="title class_">Interceptor</span>.<span class="title function_">attach</span>(adr, &#123;</span><br><span class="line">        <span class="attr">onEnter</span>: <span class="keyword">function</span> (<span class="params">args</span>) &#123;</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">onLeave</span>: <span class="keyword">function</span> (<span class="params">retval</span>) &#123;</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Origin retval : &quot;</span>,retval);</span><br><span class="line">            retval.<span class="title function_">replace</span>(<span class="number">1337</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">main</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="title class_">Java</span>.<span class="title function_">perform</span>(<span class="keyword">function</span> (<span class="params"></span>)&#123;</span><br><span class="line">        <span class="title function_">hook</span>();</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// setImmediate(main);</span></span><br><span class="line"><span class="built_in">setTimeout</span>(main,<span class="number">1000</span>);</span><br></pre></td></tr></table></figure>
+<p><img src="/./assets/image-20240604152917826.png" srcset="/img/loading.gif" lazyload alt="image-20240604152917826"></p>
+<p><img src="/./assets/image-20240604152943922.png" srcset="/img/loading.gif" lazyload alt="image-20240604152943922"></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">hook</span>(<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-keyword">var</span> adr = <span class="hljs-title class_">Module</span>.<span class="hljs-title function_">findExportByName</span>(<span class="hljs-string">&quot;liba0x9.so&quot;</span>, <span class="hljs-string">&quot;Java_com_ad2001_a0x9_MainActivity_check_1flag&quot;</span>);<br>    <span class="hljs-title class_">Interceptor</span>.<span class="hljs-title function_">attach</span>(adr, &#123;<br>        <span class="hljs-attr">onEnter</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">args</span>) &#123;<br>        &#125;,<br>        <span class="hljs-attr">onLeave</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">retval</span>) &#123;<br>            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Origin retval : &quot;</span>,retval);<br>            retval.<span class="hljs-title function_">replace</span>(<span class="hljs-number">1337</span>);<br>        &#125;<br>    &#125;);<br>&#125;<br><span class="hljs-keyword">function</span> <span class="hljs-title function_">main</span>(<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">perform</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)&#123;<br>        <span class="hljs-title function_">hook</span>();<br>    &#125;)<br>&#125;<br><br><span class="hljs-comment">// setImmediate(main);</span><br><span class="hljs-built_in">setTimeout</span>(main,<span class="hljs-number">1000</span>);<br></code></pre></td></tr></table></figure>
 
 <h2 id="Frida-0xA"><a href="#Frida-0xA" class="headerlink" title="Frida 0xA"></a>Frida 0xA</h2><h3 id="调用native层中未被调用的方法"><a href="#调用native层中未被调用的方法" class="headerlink" title="调用native层中未被调用的方法"></a>调用native层中未被调用的方法</h3><p>模板:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> native_adr = <span class="keyword">new</span> <span class="title class_">NativePointer</span>(&lt;address_of_the_native_function&gt;);</span><br><span class="line"><span class="keyword">const</span> native_function = <span class="keyword">new</span> <span class="title class_">NativeFunction</span>(native_adr, <span class="string">&#x27;&lt;return type&gt;&#x27;</span>, [<span class="string">&#x27;argument_data_type&#x27;</span>]);</span><br><span class="line"><span class="title function_">native_function</span>(&lt;<span class="variable language_">arguments</span>&gt;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> native_adr = <span class="hljs-keyword">new</span> <span class="hljs-title class_">NativePointer</span>(&lt;address_of_the_native_function&gt;);<br><span class="hljs-keyword">const</span> native_function = <span class="hljs-keyword">new</span> <span class="hljs-title class_">NativeFunction</span>(native_adr, <span class="hljs-string">&#x27;&lt;return type&gt;&#x27;</span>, [<span class="hljs-string">&#x27;argument_data_type&#x27;</span>]);<br><span class="hljs-title function_">native_function</span>(&lt;<span class="hljs-variable language_">arguments</span>&gt;);<br></code></pre></td></tr></table></figure>
 
 <blockquote>
 <p>让我逐行解释。</p>
@@ -370,78 +441,347 @@
 <p>native_function(<arguments>);</p>
 </blockquote>
 <p>apk中没有什么有用的信息，看so文件他的主函数也没有有用的信息，但我们找到一个输出flag的函数，可以尝试调用它</p>
-<p><img src="/./assets/image-20240604163528916.png" alt="image-20240604163528916"></p>
-<p><img src="/./assets/image-20240604163651152.png" alt="image-20240604163651152"></p>
-<p><img src="/./assets/image-20240604163702086.png" alt="image-20240604163702086"></p>
+<p><img src="/./assets/image-20240604163528916.png" srcset="/img/loading.gif" lazyload alt="image-20240604163528916"></p>
+<p><img src="/./assets/image-20240604163651152.png" srcset="/img/loading.gif" lazyload alt="image-20240604163651152"></p>
+<p><img src="/./assets/image-20240604163702086.png" srcset="/img/loading.gif" lazyload alt="image-20240604163702086"></p>
 <h2 id="Frida-0xB"><a href="#Frida-0xB" class="headerlink" title="Frida 0xB"></a>Frida 0xB</h2><h3 id="更改Native层方法的汇编指令"><a href="#更改Native层方法的汇编指令" class="headerlink" title="更改Native层方法的汇编指令"></a>更改Native层方法的汇编指令</h3><p>x86指令集的frida使用模板:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> writer = <span class="keyword">new</span> <span class="title function_">X86Writer</span>(opcodeaddr);</span><br><span class="line"><span class="title class_">Memory</span>.<span class="title function_">protect</span>(opcodeaddr, <span class="number">0x1000</span>, <span class="string">&quot;rwx&quot;</span>);</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line"> </span><br><span class="line">  writer.<span class="title function_">flush</span>();</span><br><span class="line"> </span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line"> </span><br><span class="line">  writer.<span class="title function_">dispose</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> writer = <span class="hljs-keyword">new</span> <span class="hljs-title function_">X86Writer</span>(opcodeaddr);<br><span class="hljs-title class_">Memory</span>.<span class="hljs-title function_">protect</span>(opcodeaddr, <span class="hljs-number">0x1000</span>, <span class="hljs-string">&quot;rwx&quot;</span>);<br><span class="hljs-keyword">try</span> &#123;<br> <br>  writer.<span class="hljs-title function_">flush</span>();<br> <br>&#125; <span class="hljs-keyword">finally</span> &#123;<br> <br>  writer.<span class="hljs-title function_">dispose</span>();<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
 
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>frida_labs</div>
+      <div>https://wuming.github.io/2024/07/03/frida-labs/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>wuming</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年7月3日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
       
     </div>
-    
+    <div class="license-icon iconfont"></div>
   </div>
-  
-    
-<nav id="article-nav">
-  
-  
-    <a href="/2023/10/08/%E5%A5%87%E6%80%AA%E7%9A%84wp/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">奇怪的wp</div>
-      <strong class="article-nav-caption">&gt;</strong>
-    </a>
-  
-</nav>
-
-  
-</article>
 
 
 
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/10/08/%E5%A5%87%E6%80%AA%E7%9A%84wp/" title="奇怪的wp">
+                        <span class="hidden-mobile">奇怪的wp</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
 
-
-
-</div>
-      <footer id="footer">
-  <div class="outer">
-    <div id="footer-info">
-      <div class="footer-left">
-        &copy; 2024 wuming
-      </div>
-        <div class="footer-right">
-          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/preccrep/hexo-theme-jelly" target="_blank">Jelly</a>
+            
+          </article>
         </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
     </div>
   </div>
-</footer>
-    </div>
-    
+</div>
+
+
+
+
+
   
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
 
 
 
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
 <script>
-	var yiliaConfig = {
-		fancybox: true,
-		mathjax: false,
-		animate: true,
-		isHome: false,
-		isPost: true,
-		isArchive: false,
-		isTag: false,
-		isCategory: false,
-		open_in_new: false
-	}
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
 </script>
 
-<script src="/js/main.js"></script>
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
 
 
 
 
-  </div>
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>
