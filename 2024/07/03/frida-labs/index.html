@@ -9,12 +9,12 @@
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="[原创]Frida-Hook-Java层操作大全-Android安全-看雪-安全社区|安全招聘|kanxue.com [原创]Frida-Hook-Native层操作大全-Android安全-看雪-安全社区|安全招聘|kanxue.com Frida 0x1修改函数返回值&amp;&amp;给函数传自定义参数程序的主要逻辑是调用一个random的函数，然后对我们的输入进行检测是否是数字，如果">
+  <meta name="description" content="[原创]Frida-Hook-Java层操作大全-Android安全-看雪-安全社区|安全招聘|kanxue.com [原创]Frida-Hook-Native层操作大全-Android安全-看雪-安全社区|安全招聘|kanxue.com Frida 0x1修改函数返回值&amp;&amp;给函数传自定义参数程序的主要逻辑是调用一个random的函数，然后对我们的输入进行检测是否是数字，如果是就使">
 <meta property="og:type" content="article">
 <meta property="og:title" content="frida_labs">
 <meta property="og:url" content="https://wuming.github.io/2024/07/03/frida-labs/index.html">
 <meta property="og:site_name" content="花开再美，怎如初见..?">
-<meta property="og:description" content="[原创]Frida-Hook-Java层操作大全-Android安全-看雪-安全社区|安全招聘|kanxue.com [原创]Frida-Hook-Native层操作大全-Android安全-看雪-安全社区|安全招聘|kanxue.com Frida 0x1修改函数返回值&amp;&amp;给函数传自定义参数程序的主要逻辑是调用一个random的函数，然后对我们的输入进行检测是否是数字，如果">
+<meta property="og:description" content="[原创]Frida-Hook-Java层操作大全-Android安全-看雪-安全社区|安全招聘|kanxue.com [原创]Frida-Hook-Native层操作大全-Android安全-看雪-安全社区|安全招聘|kanxue.com Frida 0x1修改函数返回值&amp;&amp;给函数传自定义参数程序的主要逻辑是调用一个random的函数，然后对我们的输入进行检测是否是数字，如果是就使">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://wuming.github.io/assets/image-20240603150155414.png">
 <meta property="og:image" content="https://wuming.github.io/assets/image-20240603191319536.png">
@@ -35,7 +35,7 @@
 <meta property="og:image" content="https://wuming.github.io/assets/image-20240604163651152.png">
 <meta property="og:image" content="https://wuming.github.io/assets/image-20240604163702086.png">
 <meta property="article:published_time" content="2024-07-03T08:44:04.000Z">
-<meta property="article:modified_time" content="2024-07-03T08:47:24.290Z">
+<meta property="article:modified_time" content="2024-07-03T08:53:23.977Z">
 <meta property="article:author" content="wuming">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://wuming.github.io/assets/image-20240603150155414.png">
@@ -221,9 +221,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <span id="more"></span> 
-
-<p>[<a target="_blank" rel="noopener" href="https://bbs.kanxue.com/thread-280758.htm#msg_header_h3_1">原创]Frida-Hook-Java层操作大全-Android安全-看雪-安全社区|安全招聘|kanxue.com</a></p>
+        <p>[<a target="_blank" rel="noopener" href="https://bbs.kanxue.com/thread-280758.htm#msg_header_h3_1">原创]Frida-Hook-Java层操作大全-Android安全-看雪-安全社区|安全招聘|kanxue.com</a></p>
 <p>[<a target="_blank" rel="noopener" href="https://bbs.kanxue.com/thread-280812.htm">原创]Frida-Hook-Native层操作大全-Android安全-看雪-安全社区|安全招聘|kanxue.com</a></p>
 <h2 id="Frida-0x1"><a href="#Frida-0x1" class="headerlink" title="Frida 0x1"></a>Frida 0x1</h2><h3 id="修改函数返回值-给函数传自定义参数"><a href="#修改函数返回值-给函数传自定义参数" class="headerlink" title="修改函数返回值&amp;&amp;给函数传自定义参数"></a>修改函数返回值&amp;&amp;给函数传自定义参数</h3><p>程序的主要逻辑是调用一个random的函数，然后对我们的输入进行检测是否是数字，如果是就使用check函数对随机数和我们输入的数进行对比，如果正确则输出flag</p>
 <p><img src="/./assets/image-20240603150155414.png" alt="image-20240603150155414"></p>
@@ -236,6 +234,8 @@
 </ul>
 </blockquote>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">hook</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="keyword">var</span> <span class="title class_">MainActivity</span> = <span class="title class_">Java</span>.<span class="title function_">use</span>(<span class="string">&quot;com.ad2001.frida0x1.MainActivity&quot;</span>);</span><br><span class="line">    <span class="title class_">MainActivity</span>.<span class="property">get_random</span>.<span class="property">implementation</span> = <span class="keyword">function</span> (<span class="params"></span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">hook2</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="keyword">var</span> <span class="title class_">Mainactivity</span> = <span class="title class_">Java</span>.<span class="title function_">use</span>(<span class="string">&#x27;com.ad2001.frida0x1.MainActivity&#x27;</span>);</span><br><span class="line">    <span class="title class_">Mainactivity</span>.<span class="property">check</span>.<span class="title function_">overload</span>(<span class="string">&#x27;int&#x27;</span>,<span class="string">&#x27;int&#x27;</span>).<span class="property">implementation</span> = <span class="keyword">function</span> (<span class="params">a,b</span>)&#123;</span><br><span class="line">        a=<span class="number">0</span>;</span><br><span class="line">        b=<span class="number">4</span>;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;i1 and i2 = &quot;</span>,a,b);</span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="title function_">check</span>(a,b);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">main</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="title class_">Java</span>.<span class="title function_">perform</span>(<span class="keyword">function</span> (<span class="params"></span>)&#123;</span><br><span class="line">        <span class="title function_">hook</span>();</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">setImmediate</span>(main);</span><br></pre></td></tr></table></figure>
+
+<span id="more"></span> 
 
 <h2 id="Frida-0x2"><a href="#Frida-0x2" class="headerlink" title="Frida 0x2"></a>Frida 0x2</h2><h3 id="调用程序未调用的函数"><a href="#调用程序未调用的函数" class="headerlink" title="调用程序未调用的函数"></a>调用程序未调用的函数</h3><p><img src="/./assets/image-20240603191319536.png" alt="image-20240603191319536"></p>
 <p>使用setImmediate的时候可能会hook不到，猜测是hook的截取时间比main的启动时间早了，所以使用settimeout延迟一会hook就能hook到了</p>
