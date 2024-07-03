@@ -13,39 +13,39 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="wuming">
+  <meta name="author" content="F1nGY3">
   <meta name="keywords" content="">
   
     <meta name="description" content="[原创]Frida-Hook-Java层操作大全-Android安全-看雪-安全社区|安全招聘|kanxue.com [原创]Frida-Hook-Native层操作大全-Android安全-看雪-安全社区|安全招聘|kanxue.com Frida 0x1修改函数返回值&amp;&amp;给函数传自定义参数程序的主要逻辑是调用一个random的函数，然后对我们的输入进行检测是否是数字，如果是就使">
 <meta property="og:type" content="article">
 <meta property="og:title" content="frida_labs">
-<meta property="og:url" content="https://wuming.github.io/2024/07/03/frida-labs/index.html">
+<meta property="og:url" content="https://shenshuoyaoyouguangha.github.io/2024/07/03/frida-labs/index.html">
 <meta property="og:site_name" content="花开再美，怎如初见..?">
 <meta property="og:description" content="[原创]Frida-Hook-Java层操作大全-Android安全-看雪-安全社区|安全招聘|kanxue.com [原创]Frida-Hook-Native层操作大全-Android安全-看雪-安全社区|安全招聘|kanxue.com Frida 0x1修改函数返回值&amp;&amp;给函数传自定义参数程序的主要逻辑是调用一个random的函数，然后对我们的输入进行检测是否是数字，如果是就使">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://wuming.github.io/assets/image-20240603150155414.png">
-<meta property="og:image" content="https://wuming.github.io/assets/image-20240603191319536.png">
-<meta property="og:image" content="https://wuming.github.io/assets/image-20240603171040737.png">
-<meta property="og:image" content="https://wuming.github.io/assets/image-20240603171055917.png">
-<meta property="og:image" content="https://wuming.github.io/assets/image-20240603192751063.png">
-<meta property="og:image" content="https://wuming.github.io/assets/image-20240603193446665.png">
-<meta property="og:image" content="https://wuming.github.io/assets/image-20240603200154611.png">
-<meta property="og:image" content="https://wuming.github.io/assets/image-20240604144832222.png">
-<meta property="og:image" content="https://wuming.github.io/assets/image-20240604144849140.png">
-<meta property="og:image" content="https://wuming.github.io/assets/image-20240604150254748.png">
-<meta property="og:image" content="https://wuming.github.io/assets/image-20240604150008695.png">
-<meta property="og:image" content="https://wuming.github.io/assets/image-20240604150146569.png">
-<meta property="og:image" content="https://wuming.github.io/assets/image-20240604150221656.png">
-<meta property="og:image" content="https://wuming.github.io/assets/image-20240604152917826.png">
-<meta property="og:image" content="https://wuming.github.io/assets/image-20240604152943922.png">
-<meta property="og:image" content="https://wuming.github.io/assets/image-20240604163528916.png">
-<meta property="og:image" content="https://wuming.github.io/assets/image-20240604163651152.png">
-<meta property="og:image" content="https://wuming.github.io/assets/image-20240604163702086.png">
+<meta property="og:image" content="https://shenshuoyaoyouguangha.github.io/assets/image-20240603150155414.png">
+<meta property="og:image" content="https://shenshuoyaoyouguangha.github.io/assets/image-20240603191319536.png">
+<meta property="og:image" content="https://shenshuoyaoyouguangha.github.io/assets/image-20240603171040737.png">
+<meta property="og:image" content="https://shenshuoyaoyouguangha.github.io/assets/image-20240603171055917.png">
+<meta property="og:image" content="https://shenshuoyaoyouguangha.github.io/assets/image-20240603192751063.png">
+<meta property="og:image" content="https://shenshuoyaoyouguangha.github.io/assets/image-20240603193446665.png">
+<meta property="og:image" content="https://shenshuoyaoyouguangha.github.io/assets/image-20240603200154611.png">
+<meta property="og:image" content="https://shenshuoyaoyouguangha.github.io/assets/image-20240604144832222.png">
+<meta property="og:image" content="https://shenshuoyaoyouguangha.github.io/assets/image-20240604144849140.png">
+<meta property="og:image" content="https://shenshuoyaoyouguangha.github.io/assets/image-20240604150254748.png">
+<meta property="og:image" content="https://shenshuoyaoyouguangha.github.io/assets/image-20240604150008695.png">
+<meta property="og:image" content="https://shenshuoyaoyouguangha.github.io/assets/image-20240604150146569.png">
+<meta property="og:image" content="https://shenshuoyaoyouguangha.github.io/assets/image-20240604150221656.png">
+<meta property="og:image" content="https://shenshuoyaoyouguangha.github.io/assets/image-20240604152917826.png">
+<meta property="og:image" content="https://shenshuoyaoyouguangha.github.io/assets/image-20240604152943922.png">
+<meta property="og:image" content="https://shenshuoyaoyouguangha.github.io/assets/image-20240604163528916.png">
+<meta property="og:image" content="https://shenshuoyaoyouguangha.github.io/assets/image-20240604163651152.png">
+<meta property="og:image" content="https://shenshuoyaoyouguangha.github.io/assets/image-20240604163702086.png">
 <meta property="article:published_time" content="2024-07-03T08:44:04.000Z">
 <meta property="article:modified_time" content="2024-07-03T08:53:23.977Z">
-<meta property="article:author" content="wuming">
+<meta property="article:author" content="F1nGY3">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://wuming.github.io/assets/image-20240603150155414.png">
+<meta name="twitter:image" content="https://shenshuoyaoyouguangha.github.io/assets/image-20240603150155414.png">
   
   
   
@@ -87,7 +87,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"wuming.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"shenshuoyaoyouguangha.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -467,13 +467,13 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>frida_labs</div>
-      <div>https://wuming.github.io/2024/07/03/frida-labs/</div>
+      <div>https://shenshuoyaoyouguangha.github.io/2024/07/03/frida-labs/</div>
     </div>
     <div class="license-meta">
       
         <div class="license-meta-item">
           <div>作者</div>
-          <div>wuming</div>
+          <div>F1nGY3</div>
         </div>
       
       
@@ -510,6 +510,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2024/07/03/pwn/" title="pwn">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">pwn</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
